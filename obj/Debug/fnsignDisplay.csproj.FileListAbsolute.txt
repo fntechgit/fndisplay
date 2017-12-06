@@ -1,0 +1,15 @@
+E:\projects\fnsign\fnsignDisplay\bin\fnsignDisplay.dll
+E:\projects\fnsign\fnsignDisplay\bin\fnsignDisplay.pdb
+E:\projects\fnsign\fnsignDisplay\obj\Debug\fnsignDisplay.dll
+E:\projects\fnsign\fnsignDisplay\obj\Debug\fnsignDisplay.pdb
+E:\projects\fnsign\fnsignDisplay\bin\schedInterface.dll
+E:\projects\fnsign\fnsignDisplay\bin\RestSharp.dll
+E:\projects\fnsign\fnsignDisplay\bin\schedInterface.pdb
+E:\projects\fnsign\fnsignDisplay\bin\RestSharp.xml
+E:\projects\fnsign\fnsignDisplay\obj\Debug\fnsignDisplay.csprojResolveAssemblyReference.cache
+E:\projects\fnsign\fnsignDisplay\bin\TweetSharp.dll
+E:\projects\fnsign\fnsignDisplay\bin\Hammock.ClientProfile.dll
+E:\projects\fnsign\fnsignDisplay\bin\Newtonsoft.Json.dll
+E:\projects\fnsign\fnsignDisplay\bin\TweetSharp.pdb
+E:\projects\fnsign\fnsignDisplay\bin\Hammock.ClientProfile.pdb
+E:\projects\fnsign\fnsignDisplay\bin\Newtonsoft.Json.xml

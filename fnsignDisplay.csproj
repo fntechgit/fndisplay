@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{715EE89E-18C1-4954-8CF0-6701F95757A0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>fnsignDisplay</RootNamespace>
+    <AssemblyName>fnsignDisplay</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.9\lib\net40\AngleSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=2.6.8.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime, Version=2.6.8.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=2.6.8.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="details.aspx" />
+    <Content Include="display.asmx" />
+    <Content Include="display.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="js\daily.js" />
+    <Content Include="js\design.js" />
+    <Content Include="js\display.js" />
+    <Content Include="js\group.js" />
+    <Content Include="js\jquery.cookie.js" />
+    <Content Include="js\notemplate.js" />
+    <Content Include="js\production.js" />
+    <Content Include="js\schedule.js" />
+    <Content Include="js\ticker.js" />
+    <Content Include="js\twitter.js" />
+    <Content Include="js\working.js" />
+    <Content Include="login.aspx" />
+    <Content Include="overlays\atscale.aspx" />
+    <Content Include="overlays\atscale_office_hours.aspx" />
+    <Content Include="overlays\austin.aspx" />
+    <Content Include="overlays\austin3.aspx" />
+    <Content Include="overlays\barcelona.aspx" />
+    <Content Include="overlays\barcelona_blue.aspx" />
+    <Content Include="overlays\barcelona_blue_scrolling.aspx" />
+    <Content Include="overlays\barcelona_design_summit.aspx" />
+    <Content Include="overlays\barcelona_green.aspx" />
+    <Content Include="overlays\barcelona_p0.aspx" />
+    <Content Include="overlays\barcelona_red_scrolling.aspx" />
+    <Content Include="overlays\barcelona_registration.aspx" />
+    <Content Include="overlays\barcelona_working_group.aspx" />
+    <Content Include="overlays\barcelona_working_groups.aspx" />
+    <Content Include="overlays\fonts\generator_config.txt" />
+    <Content Include="overlays\fonts\oculussans-black-demo.html" />
+    <Content Include="overlays\fonts\oculussans-blackitalic-demo.html" />
+    <Content Include="overlays\fonts\oculussans-bold-demo.html" />
+    <Content Include="overlays\fonts\oculussans-bolditalic-demo.html" />
+    <Content Include="overlays\fonts\oculussans-demibold-demo.html" />
+    <Content Include="overlays\fonts\oculussans-light-demo.html" />
+    <Content Include="overlays\fonts\oculussans-lightitalic-demo.html" />
+    <Content Include="overlays\fonts\oculussans-medium-demo.html" />
+    <Content Include="overlays\fonts\oculussans-mediumitalic-demo.html" />
+    <Content Include="overlays\fonts\oculussans-normal-demo.html" />
+    <Content Include="overlays\fonts\oculussans-normalitalic-demo.html" />
+    <Content Include="overlays\fonts\specimen_files\grid_12-825-55-15.css" />
+    <Content Include="overlays\fonts\specimen_files\specimen_stylesheet.css" />
+    <Content Include="overlays\fonts\stylesheet.css" />
+    <Content Include="overlays\oc3.aspx" />
+    <Content Include="overlays\oc3_group.aspx" />
+    <Content Include="overlays\ocp2017_breakout.aspx" />
+    <Content Include="overlays\ocp2017_registration.aspx" />
+    <Content Include="overlays\overlay_1920V_no_twitter.aspx" />
+    <Content Include="overlays\overlay_1920V_twitter.aspx" />
+    <Content Include="overlays\overlay_1920_brownbag.aspx" />
+    <Content Include="overlays\overlay_1920_market.aspx" />
+    <Content Include="overlays\overlay_1920_summit.aspx" />
+    <Content Include="overlays\overlay_blank.aspx" />
+    <Content Include="overlays\overlay_housekeeping_slides.aspx" />
+    <Content Include="overlays\overlay_ocp.aspx" />
+    <Content Include="overlays\schedule_of_events.aspx" />
+    <Content Include="overlay_display.aspx" />
+    <Content Include="vertical.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="display.asmx.cs">
+      <DependentUpon>display.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="display.aspx.cs">
+      <DependentUpon>display.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="display.aspx.designer.cs">
+      <DependentUpon>display.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\atscale.aspx.cs">
+      <DependentUpon>atscale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\atscale.aspx.designer.cs">
+      <DependentUpon>atscale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\atscale_office_hours.aspx.cs">
+      <DependentUpon>atscale_office_hours.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\atscale_office_hours.aspx.designer.cs">
+      <DependentUpon>atscale_office_hours.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\austin.aspx.cs">
+      <DependentUpon>austin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\austin.aspx.designer.cs">
+      <DependentUpon>austin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\austin3.aspx.cs">
+      <DependentUpon>austin3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\austin3.aspx.designer.cs">
+      <DependentUpon>austin3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona.aspx.cs">
+      <DependentUpon>barcelona.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona.aspx.designer.cs">
+      <DependentUpon>barcelona.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_blue.aspx.cs">
+      <DependentUpon>barcelona_blue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_blue.aspx.designer.cs">
+      <DependentUpon>barcelona_blue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_blue_scrolling.aspx.cs">
+      <DependentUpon>barcelona_blue_scrolling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_blue_scrolling.aspx.designer.cs">
+      <DependentUpon>barcelona_blue_scrolling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_design_summit.aspx.cs">
+      <DependentUpon>barcelona_design_summit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_design_summit.aspx.designer.cs">
+      <DependentUpon>barcelona_design_summit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_green.aspx.cs">
+      <DependentUpon>barcelona_green.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_green.aspx.designer.cs">
+      <DependentUpon>barcelona_green.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_p0.aspx.cs">
+      <DependentUpon>barcelona_p0.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_p0.aspx.designer.cs">
+      <DependentUpon>barcelona_p0.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_red_scrolling.aspx.cs">
+      <DependentUpon>barcelona_red_scrolling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_red_scrolling.aspx.designer.cs">
+      <DependentUpon>barcelona_red_scrolling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_registration.aspx.cs">
+      <DependentUpon>barcelona_registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_registration.aspx.designer.cs">
+      <DependentUpon>barcelona_registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_working_group.aspx.cs">
+      <DependentUpon>barcelona_working_group.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_working_group.aspx.designer.cs">
+      <DependentUpon>barcelona_working_group.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\barcelona_working_groups.aspx.cs">
+      <DependentUpon>barcelona_working_groups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\barcelona_working_groups.aspx.designer.cs">
+      <DependentUpon>barcelona_working_groups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\oc3.aspx.cs">
+      <DependentUpon>oc3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\oc3.aspx.designer.cs">
+      <DependentUpon>oc3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\oc3_group.aspx.cs">
+      <DependentUpon>oc3_group.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\oc3_group.aspx.designer.cs">
+      <DependentUpon>oc3_group.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\ocp2017_breakout.aspx.cs">
+      <DependentUpon>ocp2017_breakout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\ocp2017_breakout.aspx.designer.cs">
+      <DependentUpon>ocp2017_breakout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\ocp2017_registration.aspx.cs">
+      <DependentUpon>ocp2017_registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\ocp2017_registration.aspx.designer.cs">
+      <DependentUpon>ocp2017_registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_1920V_no_twitter.aspx.cs">
+      <DependentUpon>overlay_1920V_no_twitter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_1920V_no_twitter.aspx.designer.cs">
+      <DependentUpon>overlay_1920V_no_twitter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_1920V_twitter.aspx.cs">
+      <DependentUpon>overlay_1920V_twitter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_1920V_twitter.aspx.designer.cs">
+      <DependentUpon>overlay_1920V_twitter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_1920_brownbag.aspx.cs">
+      <DependentUpon>overlay_1920_brownbag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_1920_brownbag.aspx.designer.cs">
+      <DependentUpon>overlay_1920_brownbag.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_1920_market.aspx.cs">
+      <DependentUpon>overlay_1920_market.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_1920_market.aspx.designer.cs">
+      <DependentUpon>overlay_1920_market.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_1920_summit.aspx.cs">
+      <DependentUpon>overlay_1920_summit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_1920_summit.aspx.designer.cs">
+      <DependentUpon>overlay_1920_summit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_blank.aspx.cs">
+      <DependentUpon>overlay_blank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_blank.aspx.designer.cs">
+      <DependentUpon>overlay_blank.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_housekeeping_slides.aspx.cs">
+      <DependentUpon>overlay_housekeeping_slides.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_housekeeping_slides.aspx.designer.cs">
+      <DependentUpon>overlay_housekeeping_slides.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\overlay_ocp.aspx.cs">
+      <DependentUpon>overlay_ocp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\overlay_ocp.aspx.designer.cs">
+      <DependentUpon>overlay_ocp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\schedule_of_events.aspx.cs">
+      <DependentUpon>schedule_of_events.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\schedule_of_events.aspx.designer.cs">
+      <DependentUpon>schedule_of_events.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlay_display.aspx.cs">
+      <DependentUpon>overlay_display.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlay_display.aspx.designer.cs">
+      <DependentUpon>overlay_display.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vertical.aspx.cs">
+      <DependentUpon>vertical.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vertical.aspx.designer.cs">
+      <DependentUpon>vertical.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\schedInterface\schedInterface.csproj">
+      <Project>{26EB39A9-752A-4511-ADE4-4FC07AA31577}</Project>
+      <Name>schedInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="overlays\fonts\oculussans-black-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-black-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-blackitalic-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-blackitalic-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-bold-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-bold-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-bolditalic-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-bolditalic-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-demibold-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-demibold-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-light-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-light-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-lightitalic-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-lightitalic-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-medium-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-medium-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-mediumitalic-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-mediumitalic-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-normal-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-normal-webfont.woff2" />
+    <Content Include="overlays\fonts\oculussans-normalitalic-webfont.woff" />
+    <Content Include="overlays\fonts\oculussans-normalitalic-webfont.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>7860</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
