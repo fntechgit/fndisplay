@@ -29,13 +29,13 @@
 		                                                    
 		<style type="text/css">
 
-			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;overflow: hidden; }	
+			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; font-size: 36px;color: #000000;background-image: url('http://fnsign.azurewebsites.net/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden;*/ }	
 			.wrapper { width: 1080px; height: 1920px;padding: 40px;  }
             .theme-options { position: absolute; }
             .fr-marker { visibility: hidden; }
             .fa-code { visibility: hidden; }
 
-            .repeater { position: relative;float: left;width: 100%;margin-bottom: 50px;clear: both;display: inline-block; }
+            .repeater { position: relative;float: left;width: 100%;margin-bottom: 0px;clear: both;display: inline-block; margin-bottom:80px; }
             .repeater:after { clear: both;content: "";display: table;}
 
             #scrolling_size { overflow: hidden; }
@@ -62,8 +62,10 @@
             .control { float: left;margin-right: 15px; }
             .right { float: right; }
 
-            .bottom-overlay { width: 1080px;height: <%= o.bottom_height %>px;position: fixed;bottom: 0px;left: 0px;right: 0px;margin: 0;background-image: url('/uploads/<%= o.bottom_overlay %>');z-index: 499; }
+            .bottom-overlay { width: 1080px;height: <%= o.bottom_height %>px;position: fixed;/*bottom: 0px;*/left: 0px;right: 0px;margin: 0;background-image: url('/uploads/<%= o.bottom_overlay %>');z-index: 499; }
 
+            /*#speaker_name { height:30%!important;top:0%!important;}*/
+            /*#session_title { height:70%!important;}*/
 		</style>
     
     <style type="text/css">
@@ -346,21 +348,21 @@
 
                     //totalHeight = totalHeight * .8;
 
-                    //$("#hidden .ui-resizable").each(function(index) {
-                    //    totalHeight += $(this).height();
-                    //});
+                    $("#hidden .ui-resizable").each(function(index) {
+                        totalHeight += $(this).height();
+                    });
 
                     //totalHeight = $("#hidden .ui-resizable").height();
 
-                    $("#repeating_panel").append('<div class="repeater">' + $("#hidden").html().replace('%26', '&') + '</div>');
+                    ////$("#repeating_panel").append('<div class="repeater">' + $("#hidden").html().replace('%26', '&') + '</div>');
+                    $("#repeating_panel").append('<div class="repeater" style="height: ' + totalHeight + 'px;">' + $("#hidden").html() + '</div>');
                 });
 
             }
 
-
             slideBottomNow();
 
-            setInterval(function() {
+            /*setInterval(function() {
 
                 var height = $("#repeating_size").height() * -1;
                 var top = $("#repeating_block").position().top;
@@ -371,7 +373,7 @@
                     slideBottomNow();
                 }
 
-            }, 1000);
+            }, 1000);*/
 
 
              
@@ -405,8 +407,12 @@
                 speed = ($("#scroll_speed").val() * 1);
             }
 
-            $("#repeating_block").css("top", $("#scrolling_block").height() + "px");
+            var top = $("#scrolling_block").height();
+            top = 0;
+            $("#repeating_block").css("top", top + "px");
 
+            height = 4572;
+            speed = 50000;
             $("#repeating_block").animate({ top: "-" + height }, speed, "linear", cycle);
         }
 
