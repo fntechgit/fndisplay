@@ -75,10 +75,22 @@ namespace fnsignDisplay.overlays
 
                     Session current = _sessions.current(ev.id, l.sched_id, _timewarp.display(t.event_id));
 
-                    current_title = current.name;
-                    current_start_time = current.start.ToShortTimeString();
-                    current_end_time = current.end.ToShortTimeString();
-                    current_speaker = current.speakers;
+                    //TODO: In next method in sessions it's returning a value when no session is coming back. 
+                    if (current.internal_id == 0)
+                    {
+                        current_title = "No official session at this time. Check SCHED for full agenda.";
+                        current_start_time = string.Empty;
+                        current_end_time = string.Empty;
+                        current_speaker = string.Empty;
+                    }
+                    else
+                    {
+                        current_title = current.name;
+                        current_start_time = current.start.ToShortTimeString();
+                        current_end_time = current.end.ToShortTimeString();
+                        current_speaker = current.speakers;                    
+                    }
+
 
                     List<Session> sess = _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id));
 

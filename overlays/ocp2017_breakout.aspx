@@ -22,7 +22,7 @@
 		
 		<style type="text/css">
 
-			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;overflow: hidden; }	
+			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden;*/ }	
 			.wrapper { width: 1080px; height: 1920px; }
 			.content { position: absolute;top: 785px; font-family: "Titling Gothic FB Nar Standard";font-style: normal;font-weight: normal;color: #4e4e4e;font-size: 52px;clear: both;overflow: hidden;height: 1030px;width:910px: }
             .current-wrapper { position: relative;width: 910px; }
@@ -95,7 +95,7 @@
 
             .wrap { margin-left: 70px; }
 
-            .bottom-overlay { width: 1080px;height: 341px;position: fixed;bottom: 0px;left: 0px;right: 0px;margin: 0;background-image: url('/uploads/ocp_bottom.jpg');z-index: 499; }
+            .bottom-overlay { width: 1080px;height: 341px;position: fixed;/*bottom: 0px;*/left: 0px;right: 0px;margin: 0;background-image: url('/uploads/ocp_bottom.jpg');z-index: 499; }
 
 		</style>
 
