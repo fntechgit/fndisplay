@@ -76,7 +76,7 @@
             .space { height: 50px;margin-bottom: 50px; }
 
             /* OCP 2017 HACKS */
-            .sessions { width: 100%;position: relative;clear: both;height: 715px;overflow: hidden; }
+            .sessions { width: 100%;position: relative;clear: both;height: 650px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
             .session-time-block { width: 280px;float: left; }
             .session-speaker-block { width: 720px;float: left;}
