@@ -24,7 +24,9 @@ namespace fnsignDisplay
                 pnl_no_events_assigned.Visible = true;
             }
 
-            Session["user_id"] = "1";
+            User user = _users.get_all().Where<User>(u => u.email == "eddie@fntech.com").First<User>();
+            Int32 uId = user != null ? user.id : 3;
+            Session["user_id"] = uId;
             Session["user_name"] = "FNTECH";
             Session["company_name"] = "FNTECH";
             Session["user_access"] = "system";

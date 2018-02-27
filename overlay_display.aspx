@@ -35,7 +35,7 @@
             .fr-marker { visibility: hidden; }
             .fa-code { visibility: hidden; }
 
-            .repeater { position: relative;float: left;width: 100%;margin-bottom: 0px;clear: both;display: inline-block; margin-bottom:80px; }
+            .repeater { position: relative;float: left;width: 100%;margin-bottom: 0px;clear: both;display: inline-block; /*margin-bottom:80px;*/ }
             .repeater:after { clear: both;content: "";display: table;}
 
             #scrolling_size { overflow: hidden; }
@@ -64,8 +64,6 @@
 
             .bottom-overlay { width: 1080px;height: <%= o.bottom_height %>px;position: fixed;/*bottom: 0px;*/left: 0px;right: 0px;margin: 0;background-image: url('/uploads/<%= o.bottom_overlay %>');z-index: 499; }
 
-            /*#speaker_name { height:30%!important;top:0%!important;}*/
-            /*#session_title { height:70%!important;}*/
 		</style>
     
     <style type="text/css">
@@ -150,6 +148,9 @@
     <div class="bottom-overlay"></div>
 
     <script type="text/javascript">
+        var speedRate = 20;
+        var scrollTop = 1115;
+        var separatorHeight = 15;
 
         setInterval(session_full, 5000);
         setInterval(twitter, 10000);
@@ -354,8 +355,9 @@
 
                     //totalHeight = $("#hidden .ui-resizable").height();
 
-                    ////$("#repeating_panel").append('<div class="repeater">' + $("#hidden").html().replace('%26', '&') + '</div>');
-                    $("#repeating_panel").append('<div class="repeater" style="height: ' + totalHeight + 'px;">' + $("#hidden").html() + '</div>');
+                    var realHeight = $("span#hidden_session_title")[index].offsetHeight + $("#speaker_name span span")[index].offsetHeight + separatorHeight;
+                    //$("#repeating_panel").append('<div class="repeater" style="height: ' + totalHeight + 'px;">' + $("#hidden").html().replace('%26', '&') + '</div>');
+                    $("#repeating_panel").append('<div class="repeater" style="height: ' + realHeight + 'px;">' + $("#hidden").html().replace('%26', '&') + '</div>');
                 });
 
             }
@@ -409,14 +411,15 @@
 
             var top = $("#scrolling_block").height();
             top = 0;
-            $("#repeating_block").css("top", top + "px");
+            ////$("#repeating_block").css("top", top + "px");
 
-            height = 4572;
-            speed = 50000;
+            height = $("#repeating_block").height();
+            speed = height * speedRate;
             $("#repeating_block").animate({ top: "-" + height }, speed, "linear", cycle);
         }
 
         function cycle() {
+            $("#repeating_block").css("top", scrollTop + "px");
             slideBottomNow();
         }
 
