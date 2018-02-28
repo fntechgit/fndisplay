@@ -247,6 +247,15 @@ namespace fnsignDisplay {
         protected global::System.Web.UI.WebControls.HiddenField hdn_multiple_speaker_name;
         
         /// <summary>
+        /// hdn_multiple_session_category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_multiple_session_category;
+        
+        /// <summary>
         /// hdn_group_by_start control.
         /// </summary>
         /// <remarks>

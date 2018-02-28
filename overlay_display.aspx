@@ -72,6 +72,21 @@
 
     </style>
 
+    <style type="text/css"> /* Colors */
+         .keynote {background-color:#F3827F;}
+         .engineering-workshop {background-color:#B7CDFF;}
+
+         #session_title .fr-editor p {
+            border-bottom: 1px solid rgba(0,0,0,0.15);
+            border-left: 1px solid transparent;
+            border-radius: 4px;
+            border-right: 1px solid rgba(0,0,0,0.15);
+            border-top: 1px solid transparent;    
+			padding-left:5px;
+			padding-bottom:3px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -104,6 +119,7 @@
         <asp:HiddenField runat="server" ID="hdn_multiple_session_end_time"/>
         <asp:HiddenField runat="server" ID="hdn_multiple_session_description"/>
         <asp:HiddenField runat="server" ID="hdn_multiple_speaker_name"/>
+        <asp:HiddenField runat="server" ID="hdn_multiple_session_category" />
 
         <asp:HiddenField runat="server" ID="hdn_group_by_start" />
         <asp:HiddenField runat="server" ID="hdn_group_by_location" />
@@ -254,6 +270,7 @@
                 var session_starts = $("#hdn_multiple_session_start_time").val().split(',;,');
                 var session_speakers = $("#hdn_multiple_speaker_name").val().split(',;,');
                 var session_locations = $("#hdn_multiple_session_location").val().split(',;,');
+                var session_category = $("#hdn_multiple_session_category").val().split(';');
 
                 $.each(session_titles, function(index, value) {
 
@@ -268,6 +285,11 @@
                             
                             $("#hidden #hidden_session_title").text(value);
 
+                        }
+
+                        if ($("#hidden #session_title").length) {
+                            $("#hidden #session_title .fr-editor p").removeClass(session_category[index -1]);
+                            $("#hidden #session_title .fr-editor p").addClass(session_category[index]);
                         }
 
                         if ($("#hidden #session_title .fr-element").length) {
@@ -319,6 +341,10 @@
                             //$("#hidden #session_title .fr-element").html($("#hidden #session_title .fr-element").html().replace(/{.+}/, session_titles[index]));
                         }
 
+                        if ($("#hidden #session_title").length) {
+                            $("#hidden #session_title .fr-editor p").addClass(session_category[index]);
+                        }
+
                         if ($("#hidden #session_start_time").length) {
                             $("#hidden #session_start_time .fr-editor").html($("#hidden #session_start_time .fr-editor").html().replace(/{.+}/, session_starts[index]));
                             //$("#hidden #session_start_time .fr-element").html($("#hidden #session_start_time .fr-element").html().replace(/{.+}/, session_starts[index]));
@@ -336,6 +362,7 @@
                             old_location = session_locations[index];
                         }
                     }
+
 
                     $("#hidden #speaker_name").css("top", ($("#hidden #session_title .fr-editor").height() + 5) + "px");
 

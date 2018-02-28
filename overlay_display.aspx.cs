@@ -187,6 +187,7 @@ namespace fnsignDisplay
                         hdn_multiple_session_end_time.Value = string.Join(",;,", sess.Select(x => x.end.ToShortTimeString()).ToList());
                         hdn_multiple_session_location.Value = string.Join(",;,", sess.Select(x => x.venue).ToList());
                         hdn_multiple_speaker_name.Value = string.Join(",;,", sess.Select(x => x.speakers).ToList());
+                        hdn_multiple_session_category.Value = string.Join(";", sess.Select(x => x.event_type.ToLower().Replace(" ","-")).ToList());
                     }
 
                     regular_overlay.Value = Page.RouteData.Values["overlay_id"] as string;
