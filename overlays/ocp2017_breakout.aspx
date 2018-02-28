@@ -82,10 +82,11 @@
             .session-speaker-block { width: 720px;float: left;}
             .time { background-color: #78be43;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; }
             .start-time { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 60px;float: left;text-transform: lowercase; }
-            .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 60px;width: 100%;float: left; }
+            .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 60px;width: 98%;float: left; }
             .speaker-name { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
+            .future-sessions .session-title { border-bottom: 1px solid rgba(0,0,0,0.15); border-left: 1px solid transparent; border-radius: 4px; border-right: 1px solid rgba(0,0,0,0.15); border-top: 1px solid transparent; padding-left:5px; padding-bottom:3px;}
 
             .upcoming-sessions { color: #78be43;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500;margin-bottom: 50px; }
 
@@ -98,6 +99,11 @@
             .bottom-overlay { width: 1080px;height: 341px;position: fixed;/*bottom: 0px;*/left: 0px;right: 0px;margin: 0;background-image: url('/uploads/ocp_bottom.jpg');z-index: 499; }
 
 		</style>
+
+        <style type="text/css"> /* Colors */
+                .keynote {background-color:#F3827F;}
+                .engineering-workshop {background-color:#B7CDFF;}
+        </style>
 
 </head>
 <body>
@@ -155,6 +161,7 @@
         <script type="text/javascript" src="/js/display.js?ver=7.1.1.4"></script>
     
         <script type="text/javascript">
+            var scrollTop = 650;
 
             setInterval(refreshData, 7500);
             setInterval(future, 50000);
@@ -169,7 +176,7 @@
 
                 var height = $("#future_sessions").height();
 
-                $("#future_sessions").css("top", (755 + 50) + "px");
+                $("#future_sessions").css("top", scrollTop + "px");
 
                 $("#future_sessions").animate({ top: "-" + height }, (height * 20), "linear", cycle);
             }
