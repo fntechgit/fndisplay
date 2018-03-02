@@ -166,7 +166,9 @@ function future() {
             var inner_content = '';
 
             $.each(data.d, function(key, value) {
-                inner_content += '<div class="session"><div class="session-time-block"><div class="start-time">' + value['event_start'] + '</div></div><div class="session-speaker-block"><div class="session-title ' + value['event_type'].toLowerCase().replace(' ', '-') + '">' + value['name'] + '</div><div class="speaker-name">' + (value['speakers'] == null ? '' : value['speakers']) + '</div></div></div><div class="space"></div>';
+                inner_content += '<div class="session"><div class="session-time-block"><div class="start-time">' + value['event_start'] + '</div></div><div class="session-speaker-block"><div class="session-title '
+                    + value['event_type'].toLowerCase().replace(/ /g, '-').replace(/:/g, '-').replace(/&/g, '-').replace(/\./g, '-') + '">'
+                    + value['name'] + '</div><div class="speaker-name">' + (value['speakers'] == null ? '' : value['speakers']) + '</div></div></div><div class="space"></div>';
             });
 
             $("#future_sessions").html(inner_content);
