@@ -98,7 +98,9 @@ namespace fnsignDisplay.overlays
                     {
                         foreach (Session s in _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id)))
                         {
-                            ph_sessions.Controls.Add(new LiteralControl("<div class=\"session\"><div class=\"session-time-block\"><div class=\"start-time\">" + s.start.ToShortTimeString() + "</div></div><div class=\"session-speaker-block\"><div class=\"session-title " + s.event_type.ToLower().Replace(" ", "-") + "\">" + s.name + "</div><div class=\"speaker-name\">" + s.speakers + "</div></div></div><div class=\"space\"></div>"));
+                            ph_sessions.Controls.Add(new LiteralControl("<div class=\"session\"><div class=\"session-time-block\"><div class=\"start-time\">" + s.start.ToShortTimeString() + "</div></div><div class=\"session-speaker-block\"><div class=\"session-title "
+                                + s.event_type.ToLower().Replace(" ", "-").Replace(":", "-").Replace(".", "-").Replace("&", "-")      
+                                + "\">" + s.name + "</div><div class=\"speaker-name\">" + s.speakers + "</div></div></div><div class=\"space\"></div>"));
                         }
                     }
                 }
