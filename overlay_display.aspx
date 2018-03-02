@@ -70,12 +70,38 @@
         #controls { width: 100%;float: left;height: 35px;position: fixed;top: 0;left: 0;background-color: #cccccc;z-index: 1000;}
         #preview { width: 1080px; height:1920px; }
 
+        #speaker_name .resizable.ui-resizable.ui-resizable-disabled {width:700px!important;}
     </style>
 
     <style type="text/css"> /* Colors */
-         .keynote {background-color:#F3827F;}
-         .engineering-workshop {background-color:#B7CDFF;}
+        p.ew--advanced-cooling {background-color:#B7CDFF;}
+        p.ew--c-i {background-color:#FFCB78;}
+        p.ew--data-center-facility {background-color:#EFC8FE;}
+        p.ew--hpc {background-color:#44F4C4;}
+        p.ew--hw-management {background-color:#FFFD67;}
+        p.ew--new-servers---gpus {background-color:#D2F5F7;}
+        p.ew--nw--case-studies---roundtable {background-color:#E91064;}
+        p.ew--nw--demo---telemetry-bof {background-color:#A35BF1;}
+        p.ew--nw--lessons---sonic-bof {background-color:#608EA4;}
+        p.ew--nw--optics-bof {background-color:#8D95FF;}
+        p.ew--nw--sai-programmability-bof {background-color:#FF8FDC;}
+        p.ew--open-for-business---adoption-stats-and-stories {background-color:#9EDF7D;}
+        p.ew--openbmc {background-color:#7FFF36;}
+        p.ew--power {background-color:#35E1FF;}
+        p.ew--rack-and-power {background-color:#EEEEEE;}
+        p.ew--security---system-firmware {background-color:#B1B1B1;}
+        p.ew--server {background-color:#FBE0A9;}
+        p.ew--storage {background-color:#D79E80;}
+        p.ew--telco {background-color:#80C5CA;}
+        p.executive-track {background-color:#57A4EB;}
+        p.expo-hall-session {background-color:#FFA500;}
+        p.ihs-market-results {background-color:#FF0800;}
+        p.keynote {background-color:#F3827F;}
+        p.meals {background-color:#F1F345;}
+        p.registration---expo-hall {background-color:#4CBB17;}
+        p.popular {background-color:#000000;}
 
+         
          #session_title .fr-editor p {
             border-bottom: 1px solid rgba(0,0,0,0.15);
             border-left: 1px solid transparent;
@@ -288,7 +314,7 @@
                         }
 
                         if ($("#hidden #session_title").length) {
-                            $("#hidden #session_title .fr-editor p").removeClass(session_category[index -1]);
+                            $("#hidden #session_title .fr-editor p").removeClass(session_category[index - 1]);
                             $("#hidden #session_title .fr-editor p").addClass(session_category[index]);
                         }
 
