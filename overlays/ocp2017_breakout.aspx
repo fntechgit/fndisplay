@@ -100,35 +100,6 @@
 
 		</style>
 
-        <style type="text/css"> /* Colors */
-            .ew--advanced-cooling {background-color:#B7CDFF;}
-            .ew--c-i {background-color:#FFCB78;}
-            .ew--data-center-facility {background-color:#EFC8FE;}
-            .ew--hpc {background-color:#44F4C4;}
-            .ew--hw-management {background-color:#FFFD67;}
-            .ew--new-servers---gpus {background-color:#D2F5F7;}
-            .ew--nw--case-studies---roundtable {background-color:#E91064;}
-            .ew--nw--demo---telemetry-bof {background-color:#A35BF1;}
-            .ew--nw--lessons---sonic-bof {background-color:#608EA4;}
-            .ew--nw--optics-bof {background-color:#8D95FF;}
-            .ew--nw--sai-programmability-bof {background-color:#FF8FDC;}
-            .ew--open-for-business---adoption-stats-and-stories {background-color:#9EDF7D;}
-            .ew--openbmc {background-color:#7FFF36;}
-            .ew--power {background-color:#35E1FF;}
-            .ew--rack-and-power {background-color:#EEEEEE;}
-            .ew--security---system-firmware {background-color:#B1B1B1;}
-            .ew--server {background-color:#FBE0A9;}
-            .ew--storage {background-color:#D79E80;}
-            .ew--telco {background-color:#80C5CA;}
-            .executive-track {background-color:#57A4EB;}
-            .expo-hall-session {background-color:#FFA500;}
-            .ihs-market-results {background-color:#FF0800;}
-            .keynote {background-color:#F3827F;}
-            .meals {background-color:#F1F345;}
-            .registration---expo-hall {background-color:#4CBB17;}
-            .popular {background-color:#000000;}
-        </style>
-
 </head>
 <body>
     <form id="form1" runat="server">
