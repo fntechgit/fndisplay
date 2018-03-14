@@ -154,7 +154,7 @@
         <script type="text/javascript">
 
             setInterval(refreshData, 7500);
-            setInterval(futureRegistration, 50000);
+            setInterval(futureRegistration_OCP_REGISTRATION_2018, 50000);
             setInterval(server_time, 5000);
 
                 if ($("#future_sessions").height() > $("#sessions").height()) {

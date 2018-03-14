@@ -91,7 +91,8 @@ namespace fnsignDisplay.overlays
                     current_end_time = current.end.ToShortTimeString();
                     current_speaker = current.speakers;
 
-                    List<Session> sess = _sessions.get_future_by_event_by_day(t.event_id, _timewarp.display(t.event_id)).OrderBy(x => x.start).ToList<Session>();
+                    List<Session> sess = _sessions.get_future_by_event_by_day(t.event_id, _timewarp.display(t.event_id))
+                        .OrderBy(x => x.start).ToList<Session>();
 
                     DateTime old = new DateTime();
 
