@@ -104,6 +104,13 @@ namespace fnsignDisplay
             return _sessions.get_future_by_event_by_day(Convert.ToInt32(Context.Session["event_id"] as string), _timewarp.display(Convert.ToInt32(Context.Session["event_id"] as string)));
         }
 
+        [WebMethod(Description = "Schedule by Day Ordered by Session Start", EnableSession = true)]
+        public List<Session> schedule_by_event_order_by_start()
+        {
+            return _sessions.get_future_by_event_by_day(Convert.ToInt32(Context.Session["event_id"] as string), _timewarp.display(Convert.ToInt32(Context.Session["event_id"] as string)))
+                .OrderBy(x => x.start).ToList<Session>();
+        }
+
         [WebMethod(Description = "Custom Method for OC3", EnableSession = true)]
         public List<Session> oc3_group()
         {
