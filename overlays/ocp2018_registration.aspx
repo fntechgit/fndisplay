@@ -76,7 +76,7 @@
             .space { height: 50px;margin-bottom: 50px; }
 
             /* OCP 2018 HACKS */
-            .sessions { width: 100%;position: relative;clear: both;height: 900px;overflow: hidden; }
+            .sessions { width: 100%;position: relative;clear: both;height: 940px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
             .session-time-block { width: 280px;float: left;display: inline-block; }
             .session-speaker-block { width: 720px;float: left;}
@@ -105,7 +105,7 @@
 			.session-time-block { width: 260px;float: left;}
             .session-speaker-block { width: 660px;float: left; padding-left:10px;}			
 			.session-title { width: 940px;}			
-            .future-sessions .session-time-block {width: 700px; padding-left:65px;}
+            .future-sessions .session-time-block {width: 700px; padding-left:65px;padding-bottom:10px;}
 		    .future-sessions .session-time-block .start-time {color: #6adf32;}
             #content { margin-left: 45px; }
 

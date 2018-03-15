@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ocp2018_breakout.aspx.cs" Inherits="fnsignDisplay.overlays.ocp2018_breakout" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ocp2018_expo.aspx.cs" Inherits="fnsignDisplay.overlays.ocp2018_expo" %>
 
 <!DOCTYPE html>
 
@@ -76,7 +76,7 @@
             .space { height: 50px;margin-bottom: 50px; }
 
             /* OCP 2018 HACKS */
-            .sessions { width: 100%;position: relative;clear: both;height: 760px;overflow: hidden; }
+            .sessions { width: 100%;position: relative;clear: both;height: 580px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
             .start-time { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
             .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
@@ -100,6 +100,8 @@
             .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
 			.upcoming-sessions { color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
+		    #expo_hall_stage_header {margin-top:480px;color:#0b10cc;font-size: 100px;font-family: "Franklin Gothic"; padding-left:150px}
+            #current_session_header {margin-top:0px;}
 		</style>
 
 </head>
@@ -118,6 +120,12 @@
         </asp:Panel>
 
         <div class="wrapper">
+            <div class="wrap">
+                <div class="single" id="expo_hall_stage_header">
+                    Expo Hall Stage
+                </div>
+            </div>
+            <div class="line"></div>
             <div class="wrap">
                 <div class="single" id="current_session_header">
                 <div class="session">

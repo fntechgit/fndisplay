@@ -8,7 +8,7 @@ using schedInterface;
 
 namespace fnsignDisplay.overlays
 {
-    public partial class ocp2018_registration : System.Web.UI.Page
+    public partial class ocp2018_expo : System.Web.UI.Page
     {
         private schedInterface.terminals _terminals = new terminals();
         private schedInterface.templates _templates = new templates();
@@ -34,9 +34,7 @@ namespace fnsignDisplay.overlays
         public string current_start_time = "2:00pm";
         public string current_end_time = "5:00pm";
         public string current_speaker = "Speaker Name";
-
-        public string day_of_week = "Monday";
-        public string number_of_date = "6";
+        public string current_bgcolor = "#FFFFFF";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,13 +47,6 @@ namespace fnsignDisplay.overlays
                     Convert.ToInt32(Page.RouteData.Values["id"]));
 
                 Event ev = _events.single(Convert.ToInt32(Session["event_id"]));
-
-                DateTime td = new DateTime();
-
-                td = DateTime.Today;
-
-                day_of_week = td.DayOfWeek.ToString();
-                number_of_date = td.Day.ToString();
 
                 if (t.template_id > 0)
                 {
@@ -86,52 +77,34 @@ namespace fnsignDisplay.overlays
 
                     Session current = _sessions.current(ev.id, l.sched_id, _timewarp.display(t.event_id));
 
-                    current_title = current.name;
-                    current_start_time = current.start.ToShortTimeString();
-                    current_end_time = current.end.ToShortTimeString();
-                    current_speaker = current.speakers;
+                    //TODO: In next method in sessions it's returning a value when no session is coming back. 
+                    if (current.internal_id == 0)
+                    {
+                        current_title = "No official session at this time. Check SCHED for full agenda.";
+                        current_start_time = string.Empty;
+                        current_end_time = string.Empty;
+                        current_speaker = string.Empty;
+                    }
+                    else
+                    {
+                        current_title = current.name;
+                        current_start_time = current.start.ToShortTimeString();
+                        current_end_time = current.end.ToShortTimeString();
+                        current_speaker = current.speakers;
+                        current_bgcolor = current.event_bgcolor;                    
+                    }
 
-                    List<Session> sess = _sessions.get_future_by_event_by_day(t.event_id, _timewarp.display(t.event_id))
-                        .OrderBy(x => x.start).ToList<Session>();
 
-                    DateTime old = new DateTime();
+                    List<Session> sess = _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id));
 
                     if (sess.Any())
                     {
-                        foreach (Session s in sess)
+                        foreach (Session s in _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id)))
                         {
-                            if (string.IsNullOrEmpty(s.speakers) || s.speakers.Equals("null"))
-                            {
-                                s.speakers = "";
-                            }
-
-                            if (old != s.start)
-                            {
-                                ph_sessions.Controls.Add(
-                                    new LiteralControl(
-                                        "<div class=\"session\">" +
-                                        "<div class=\"session-time-block\"><div class=\"start-time\">" +
-                                        s.start.ToShortTimeString() +
-                                        "</div></div>" +
-                                        "<div class=\"session-type-block\"><div class=\"session-type\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div></div>" +
-                                        "<div class=\"session-speaker-block\"><div class=\"session-title\">" +
-                                        s.name + "</div><div class=\"speaker-name\">" + s.speakers +
-                                        "</div><div class=\"room-name\">" + s.venue +
-                                        "</div></div></div><div class=\"space\"></div>"));
-
-                                old = s.start;
-                            }
-                            else
-                            {
-                                ph_sessions.Controls.Add(
-                                    new LiteralControl(
-                                        "<div class=\"session\">" +
-                                        "<div class=\"session-type\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div>" +
-                                        "<div class=\"session-speaker-block\"><div class=\"session-title\">" +
-                                        s.name + "</div><div class=\"speaker-name\">" + s.speakers +
-                                        "</div><div class=\"room-name\">" + s.venue +
-                                        "</div></div></div><div class=\"space\"></div>"));
-                            }
+                            ph_sessions.Controls.Add(new LiteralControl("<div class=\"session\">"
+                                + "<div class=\"session-type-block\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div>" 
+                                + "<div class=\"session-time-block\"><div class=\"start-time\">" + s.start.ToShortTimeString() + "</div></div><div class=\"session-speaker-block\"><div class=\"session-title\""
+                                + ">" + s.name + "</div><div class=\"speaker-name\">" + s.speakers + "</div></div></div><div class=\"space\"></div>"));
                         }
                     }
                 }
