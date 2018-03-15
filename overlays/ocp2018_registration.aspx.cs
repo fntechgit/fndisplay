@@ -110,10 +110,11 @@ namespace fnsignDisplay.overlays
                                 ph_sessions.Controls.Add(
                                     new LiteralControl(
                                         "<div class=\"session\">" +
-                                        "<div class=\"session-type-block\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div>"  +
                                         "<div class=\"session-time-block\"><div class=\"start-time\">" +
                                         s.start.ToShortTimeString() +
-                                        "</div></div><div class=\"session-speaker-block\"><div class=\"session-title\">" +
+                                        "</div></div>" +
+                                        "<div class=\"session-type-block\"><div class=\"session-type\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div></div>" +
+                                        "<div class=\"session-speaker-block\"><div class=\"session-title\">" +
                                         s.name + "</div><div class=\"speaker-name\">" + s.speakers +
                                         "</div><div class=\"room-name\">" + s.venue +
                                         "</div></div></div><div class=\"space\"></div>"));
@@ -125,8 +126,9 @@ namespace fnsignDisplay.overlays
                                 ph_sessions.Controls.Add(
                                     new LiteralControl(
                                         "<div class=\"session\">" +
-                                        "<div class=\"session-type-block\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div>" +
-                                        "<div class=\"session-time-block\"><div class=\"start-time\">&nbsp;</div></div><div class=\"session-speaker-block\"><div class=\"session-title\">" +
+                                        "<div class=\"session-time-block\"><div class=\"start-time\">&nbsp;</div></div>"+
+                                        "<div class=\"session-type-block\"><div class=\"session-type\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div></div>" +
+                                        "<div class=\"session-speaker-block\"><div class=\"session-title\">" +
                                         s.name + "</div><div class=\"speaker-name\">" + s.speakers +
                                         "</div><div class=\"room-name\">" + s.venue +
                                         "</div></div></div><div class=\"space\"></div>"));

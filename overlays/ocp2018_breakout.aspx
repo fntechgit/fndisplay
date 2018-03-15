@@ -76,29 +76,29 @@
             .space { height: 50px;margin-bottom: 50px; }
 
             /* OCP 2018 HACKS */
-            .sessions { width: 100%;position: relative;clear: both;height: 650px;overflow: hidden; }
+            .sessions { width: 100%;position: relative;clear: both;height: 760px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
-            .session-time-block { width: 280px;float: left; }
-            .session-speaker-block { width: 720px;float: left;}
-            .time { background-color: #78be43;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; }
-            .start-time { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 60px;float: left;text-transform: lowercase; }
-            .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 60px;width: 98%;float: left; }
+            .start-time { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
             .speaker-name { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
             /*.future-sessions .session-title { border-bottom: 1px solid rgba(0,0,0,0.15); border-left: 1px solid transparent; border-radius: 4px; border-right: 1px solid rgba(0,0,0,0.15); border-top: 1px solid transparent; padding-left:5px; padding-bottom:3px;}*/
 
-            .upcoming-sessions { color: #78be43;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500;margin-bottom: 50px; }
-
             .line {position: relative;float: left;width: 100%;height: 46px;background-image: url('/uploads/ocp_line.png');background-repeat: no-repeat; }
 
             .single { margin-top: 460px; }
 
-            .wrap { margin-left: 70px; }
-
             .bottom-overlay { width: 1080px;height: 341px;position: fixed;/*bottom: 0px;*/left: 0px;right: 0px;margin: 0;background-image: url('/uploads/ocp_bottom.jpg');z-index: 499; }
 
-		    .session-type-block {width: 41px; height: 41px; border-radius: 21px;}
+		    .session-type-block {width: 41px; height: 41px; border-radius: 21px; float:left; margin-top: 12px; margin-right: 15px;}
+			#current_session_header div.session { height: 220px; padding-top:20px;}
+			div.session {font-size: 58px; color: rgb(79,96,106); font-family: "Franklin Gothic";}
+			.wrap { margin-left: 45px; }
+			.time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
+            .session-time-block { width: 250px;float: left;}
+            .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
+			.upcoming-sessions { color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
 		</style>
 
@@ -123,11 +123,11 @@
                 <div class="session">
                     <div class="session-type-block" id="current_type" style="background-color:<%= current_bgcolor %>"></div>
                     <div class="session-time-block">
-                        <div class="start-time" id="current_start_time">
-                            <%= current_start_time %>
+                        <div class="start-time" id="current_time">
+                            <%= DateTime.Now.ToShortTimeString() %>
                         </div>
                         <div class="time">
-                            CURRENT SESSION
+                            CURRENT TIME
                         </div>
                     </div>
                     <div class="session-speaker-block">
@@ -164,6 +164,7 @@
             setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
             setInterval(future, 50000);
             setInterval(session_full, 5000);
+            setInterval(server_time, 5000);
 
                 if ($("#future_sessions").height() > $("#sessions").height()) {
                     // make it scroll
@@ -182,6 +183,10 @@
             function cycle() {
                 slideBottom();
             }
+
+            $(document).ready(function () {
+                //$('div#current_title').css({ "font-size": '20px' });
+            })
 		
 		</script>
     </form>
