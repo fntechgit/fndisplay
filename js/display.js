@@ -85,6 +85,61 @@ function refreshData() {
 
 }
 
+function refreshData_OCP_BREAKOUT_2018() {
+
+    // refresh the data
+
+    location_id = $("#location_sched").val();
+
+    var single_height = $("#current_session_header .session").height();
+
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/current",
+        data: "{'location': '" + location_id + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+
+            server_time();
+
+            if (data.d.event_id == 0) {
+                var cookie_id = $.cookie("FNSIGN_EventID");
+
+                // if Session["event_id"] Is Null check for the cookie
+                $.ajax({
+                    type: "POST",
+                    url: "/display.asmx/loginAgain",
+                    data: "{'event_id': '" + cookie_id + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data, status) {
+                        refreshData_OCP_BREAKOUT_2018();
+                    }
+                });
+
+            } else {
+
+                var nosession = "No official session at this time. Check SCHED for full agenda.";
+                if (data.d.name != "")
+                    $("#current_title").text(data.d.name);
+                else
+                    $("#current_title").text(nosession);
+
+                $("#current_start_time").text(data.d.event_start);
+                $("#current_speaker").text(data.d.speakers);
+                $("#current_type").css({ "backgroundColor": data.d.event_bgcolor });
+
+                background();
+
+                adjustCurrentSession();
+
+            }
+        }
+    });
+
+}
+
 function refreshOffice() {
 
     // refresh the data
@@ -166,8 +221,10 @@ function future() {
             var inner_content = '';
 
             $.each(data.d, function(key, value) {
-                inner_content += '<div class="session"><div class="session-time-block"><div class="start-time">' + value['event_start'] + '</div></div><div class="session-speaker-block"><div class="session-title" '
-                    + 'style="background-color:' + value['event_bgcolor'] + '">'
+                inner_content += '<div class="session">'
+                    + '<div class="session-type-block"' + ' style="background-color:' + value['event_bgcolor'] + '"></div>'
+                    + '<div class="session-time-block"><div class="start-time">' + value['event_start'] + '</div></div><div class="session-speaker-block">'
+                    + '<div class="session-title">'
                     + value['name'] + '</div><div class="speaker-name">' + (value['speakers'] == null ? '' : value['speakers']) + '</div></div></div><div class="space"></div>';
             });
 
@@ -217,6 +274,52 @@ function futureRegistration() {
             background();
 
             //summit();
+        }
+    });
+}
+
+function futureRegistration_OCP_REGISTRATION_2018() {
+
+    location_id = $("#location_sched").val();
+
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/schedule_by_event_order_by_start",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+
+            $("#future_sessions").html('');
+
+            var inner_content = '';
+            var time = '';
+            var session_start;
+
+            $.each(data.d, function (key, value) {
+
+                if (value['speakers'] == 'null' || value['speakers'] == null) {
+                    value['speakers'] = '';
+                }
+
+                session_start = value['event_start'];
+
+                if (time == session_start) {
+                    inner_content += '<div class="session">'
+                        + '<div class="session-type"' + ' style="background-color:' + value['event_bgcolor'] + '"></div>'
+                        + '<div class="session-speaker-block"><div class="session-title">' + value['name'] + '</div><div class="speaker-name">' + value['speakers'] + '</div><div class="room-name">' + value['venue'] + '</div></div></div><div class="space"></div>';
+                } else {
+                    inner_content += '<div class="session">'
+                        + '<div class="session-time-block"><div class="start-time">' + session_start + '</div></div>'
+                        + '<div class="session-type-block"><div class="session-type"' + ' style="background-color:' + value['event_bgcolor'] + '"></div></div>'
+                        + '<div class="session-speaker-block"><div class="session-title">' + value['name'] + '</div><div class="speaker-name">' + value['speakers'] + '</div><div class="room-name">' + value['venue'] + '</div></div></div><div class="space"></div>';
+                    time = session_start;
+                }
+
+            });
+
+            $("#future_sessions").html(inner_content);
+
+            background();
         }
     });
 }
@@ -502,6 +605,51 @@ function session_full() {
             }
         }
     });
+}
+
+function session_full_OCP_BREAKOUT_2018() {
+    location_id = $("#location_sched").val();
+
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/current",
+        data: "{'location': '" + location_id + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+            server_time();
+
+            if (data.d.event_id == 0) {
+                var cookie_id = $.cookie("FNSIGN_EventID");
+
+                // if Session["event_id"] Is Null check for the cookie
+                $.ajax({
+                    type: "POST",
+                    url: "/display.asmx/loginAgain",
+                    data: "{'event_id': '" + cookie_id + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data, status) {
+                        refreshData_OCP_BREAKOUT_2018();
+                    }
+                });
+
+            } else {
+                if (data.d.full === true) {
+                    // show the full session graphic
+                    var fullsess = $("#full_session_graphic").text();
+
+                    console.log('Session Is Full');
+                    $("body").append("<div id='full' style='position:absolute;top:0;left:0;width:1080px;height:1920px;z-index:500;'><img src='" + fullsess + "' width='1080' height='1920' /></div>");
+
+                } else {
+                    $("#full").remove();
+                }
+
+            }
+        }
+    });
+
 }
 
 function server_time() {
