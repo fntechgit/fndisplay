@@ -78,9 +78,9 @@
             /* OCP 2018 HACKS */
             .sessions { width: 100%;position: relative;clear: both;height: 580px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
-            .start-time { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
-            .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
-            .speaker-name { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
+            .start-time { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
+            .speaker-name { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
             /*.future-sessions .session-title { border-bottom: 1px solid rgba(0,0,0,0.15); border-left: 1px solid transparent; border-radius: 4px; border-right: 1px solid rgba(0,0,0,0.15); border-top: 1px solid transparent; padding-left:5px; padding-bottom:3px;}*/
@@ -98,9 +98,9 @@
 			.time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
             .session-time-block { width: 250px;float: left;}
             .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
-			.upcoming-sessions { color: #6bdf33;font-family: "franklin-gothic", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
+			.upcoming-sessions { color: #6bdf33;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
-		    #expo_hall_stage_header {margin-top:480px;color:#0b10cc;font-size: 100px;font-family: "Franklin Gothic"; padding-left:35px}
+		    #expo_hall_stage_header {margin-top:480px;color:#0b10cc;font-size: 100px;font-family: "franklin-gothic-urw"; padding-left:35px}
             #current_session_header {margin-top:0px;}
 
             /*New style changes*/

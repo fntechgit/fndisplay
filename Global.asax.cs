@@ -54,6 +54,7 @@ namespace fnsignDisplay
             routes.MapPageRoute("ocp-2017-registration-route", "ocp-2017-registration/{id}", "~/overlays/ocp2017_registration.aspx");
             routes.MapPageRoute("ocp-2018-breakout-route", "ocp-2018-breakout/{id}", "~/overlays/ocp2018_breakout.aspx");
             routes.MapPageRoute("ocp-2018-registration-route", "ocp-2018-registration/{id}", "~/overlays/ocp2018_registration.aspx");
+            routes.MapPageRoute("ocp-2018-expo-route", "ocp-2018-expo/{id}", "~/overlays/ocp2018_expo.aspx");
             routes.MapPageRoute("preview-route", "preview/{event_id}/{location_id}/{overlay_id}", "~/template_builder_live_preview.aspx");
             routes.MapPageRoute("preview-with-announcement-route", "preview/{event_id}/{location_id}/{overlay_id}/announce/{announcement_id}/{type}", "~/overlay_display.aspx");
             routes.MapPageRoute("preview-with-end-of-day-route", "preview/{event_id}/{location_id}/{overlay_id}/end-of-day/{end_id}/{type}", "~/overlay_display.aspx");

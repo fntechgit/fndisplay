@@ -81,14 +81,14 @@
             .session-time-block { width: 280px;float: left;display: inline-block; }
             .session-speaker-block { width: 720px;float: left;}
             .time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 30px;float: left; }
-            .start-time { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 60px;float: left;text-transform: lowercase; }
-            .session-title { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 100%;float: left; }
-            .speaker-name { color: #63676b;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
-            .room-name { color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 42px;width: 100%;float: left; }
+            .start-time { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 100%;float: left; }
+            .speaker-name { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
+            .room-name { color: #6bdf33;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 42px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
 
-            .upcoming-sessions { color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;font-size: 58px;font-weight: 500;width: 100%;float: left; }
+            .upcoming-sessions { color: #6bdf33;font-family: "franklin-gothic-urw", sans-serif;font-size: 58px;font-weight: 500;width: 100%;float: left; }
 
             .line {position: relative;float: left;width: 100%;height: 46px;background-image: url('/uploads/ocp_line.png');background-repeat: no-repeat; }
 
@@ -106,7 +106,7 @@
             .session-speaker-block { width: 660px;float: left; padding-left:10px;}			
 			.session-title { width: 940px;}			
             .future-sessions .session-time-block {width: 700px; padding-left:65px;padding-bottom:10px;}
-		    .future-sessions .session-time-block .start-time {color: #6adf32;}
+		    .future-sessions .session-time-block .start-time {color: #6bdf33;}
             #content { margin-left: 45px; }
 
 		</style>
