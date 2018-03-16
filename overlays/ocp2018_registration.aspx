@@ -77,7 +77,7 @@
 
             /* OCP 2018 HACKS */
             .sessions { width: 100%;position: relative;clear: both;height: 940px;overflow: hidden; }
-            .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
+            .session { width: 100%;float: left;position: relative;padding-left: 10px;margin-bottom: 50px; }
             .session-time-block { width: 280px;float: left;display: inline-block; }
             .session-speaker-block { width: 720px;float: left;}
             .time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 30px;float: left; }
@@ -97,7 +97,7 @@
 
             .session-type-block {width: 41px; height: 41px; border-radius: 21px;}
 			
-			.single .session { padding-top: 30px; padding-left: 45px;}
+			.single .session { padding-top: 30px; padding-left: 45px; width:950px;}
 			div.session {font-size: 58px; color: rgb(79,96,106); font-family: "Franklin Gothic";}
 			.time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
 			.session-type-block {width: 700px;}
@@ -164,6 +164,7 @@
         <script type="text/javascript" src="/js/display.js?ver=4.1.1.4"></script>
     
         <script type="text/javascript">
+            var scrollTop = 940;
 
             setInterval(refreshData, 7500);
             setInterval(futureRegistration_OCP_REGISTRATION_2018, 50000);
@@ -181,7 +182,7 @@
 
                 var height = $("#future_sessions").height();
 
-                $("#future_sessions").css("top", (755 + 50) + "px");
+                $("#future_sessions").css("top", scrollTop + "px");
 
                 $("#future_sessions").animate({ top: "-" + height }, (height * 20), "linear", cycle);
             }

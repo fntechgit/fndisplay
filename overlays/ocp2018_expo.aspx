@@ -98,10 +98,18 @@
 			.time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
             .session-time-block { width: 250px;float: left;}
             .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
-			.upcoming-sessions { color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
+			.upcoming-sessions { color: #6bdf33;font-family: "franklin-gothic", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
-		    #expo_hall_stage_header {margin-top:480px;color:#0b10cc;font-size: 100px;font-family: "Franklin Gothic"; padding-left:150px}
+		    #expo_hall_stage_header {margin-top:480px;color:#0b10cc;font-size: 100px;font-family: "Franklin Gothic"; padding-left:35px}
             #current_session_header {margin-top:0px;}
+
+            /*New style changes*/
+            .single .session-speaker-block { position:inherit;}
+            .session-speaker-block {width: 620px;}
+		    .wrap { margin-left: 65px;}
+		    .upcoming-sessions { margin-left: 60px;}
+            .single .session-time-block { padding-left: 5px;}
+            .single .session  { width: 1010px;}
 		</style>
 
 </head>
@@ -122,7 +130,7 @@
         <div class="wrapper">
             <div class="wrap">
                 <div class="single" id="expo_hall_stage_header">
-                    Expo Hall Stage
+                    Expo Hall Stage Talks
                 </div>
             </div>
             <div class="line"></div>
@@ -161,17 +169,18 @@
         </div>
         
         <div class="ticker"></div>
-        
+        <div id="full_session_graphic"><%= fnsignUrl %>/uploads/<%= current_full_session_graphic %></div>
+
         <div class="bottom-overlay"></div>
         
         <script type="text/javascript" src="/js/display.js?ver=7.1.1.4"></script>
     
         <script type="text/javascript">
-            var scrollTop = 650;
+            var scrollTop = 580;
 
             setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
             setInterval(future, 50000);
-            setInterval(session_full, 5000);
+            setInterval(session_full_OCP_BREAKOUT_2018, 5000);
             setInterval(server_time, 5000);
 
                 if ($("#future_sessions").height() > $("#sessions").height()) {
@@ -197,9 +206,15 @@
                 if (session_title_len >= 80) {
                     $('div#current_title').css({ "font-size": '40px' });
                     $('div#current_speaker').css({ "font-size": '32px' });
+                    $('.single .session-speaker-block').css({ "top": '20px' });
                 } else if (session_title_len >= 40 && session_title_len < 80) {
                     $('div#current_title').css({ "font-size": '46px' });
                     $('div#current_speaker').css({ "font-size": '36px' });
+                    $('.single .session-speaker-block').css({ "top": '12px' });
+                } else {
+                    $('div#current_title').css({ "font-size": '58px' });
+                    $('div#current_speaker').css({ "font-size": '46px' });
+                    $('.single .session-speaker-block').css({ "top": '0px' });
                 }
             }
 

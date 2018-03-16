@@ -35,6 +35,7 @@ namespace fnsignDisplay.overlays
         public string current_end_time = "5:00pm";
         public string current_speaker = "Speaker Name";
         public string current_bgcolor = "#FFFFFF";
+        public string current_full_session_graphic = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -91,7 +92,8 @@ namespace fnsignDisplay.overlays
                         current_start_time = current.start.ToShortTimeString();
                         current_end_time = current.end.ToShortTimeString();
                         current_speaker = current.speakers;
-                        current_bgcolor = current.event_bgcolor;                    
+                        current_bgcolor = current.event_bgcolor;
+                        current_full_session_graphic = ev.full_session;
                     }
 
 
