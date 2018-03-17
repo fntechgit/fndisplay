@@ -80,11 +80,11 @@
             .session { width: 100%;float: left;position: relative;padding-left: 10px;margin-bottom: 50px; }
             .session-time-block { width: 280px;float: left;display: inline-block; }
             .session-speaker-block { width: 720px;float: left;}
-            .time { background-color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 30px;float: left; }
-            .start-time { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
-            .session-title { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 100%;float: left; }
-            .speaker-name { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400; letter-spacing: 1px; font-size: 46px;width: 100%;float: left; }
-            .room-name { color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 42px;width: 100%;float: left; }
+            .time { background-color: #8dc63f;font-family: "franklin-gothic-urw";color: #ffffff;font-weight: 500;padding: 15px;font-size: 30px;float: left; }
+            .start-time { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 58px;width: 100%;float: left; }
+            .speaker-name { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 400; letter-spacing: 1px; font-size: 46px;width: 100%;float: left; }
+            .room-name { color: #8dc63f;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 42px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
 

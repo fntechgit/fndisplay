@@ -76,11 +76,11 @@
             .space { height: 50px;margin-bottom: 50px; }
 
             /* OCP 2018 HACKS */
-            .sessions { width: 100%;position: relative;clear: both;height: 580px;overflow: hidden; }
+            .sessions { width: 100%;position: relative;clear: both;height: 640px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
-            .start-time { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
-            .session-title { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
-            .speaker-name { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400; letter-spacing: 1px; font-size: 46px;width: 100%;float: left; }
+            .start-time { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 58px;width: 98%;float: left; }
+            .speaker-name { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 400; letter-spacing: 1px; font-size: 46px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
             /*.future-sessions .session-title { border-bottom: 1px solid rgba(0,0,0,0.15); border-left: 1px solid transparent; border-radius: 4px; border-right: 1px solid rgba(0,0,0,0.15); border-top: 1px solid transparent; padding-left:5px; padding-bottom:3px;}*/
@@ -92,13 +92,13 @@
             .bottom-overlay { width: 1080px;height: 341px;position: fixed;/*bottom: 0px;*/left: 0px;right: 0px;margin: 0;background-image: url('/uploads/ocp_bottom.jpg');z-index: 499; }
 
 		    .session-type-block {width: 41px; height: 41px; border-radius: 21px; float:left; margin-top: 12px; margin-right: 15px;}
-			#current_session_header div.session { height: 220px; padding-top:20px;}
+			#current_session_header div.session { height: 160px; padding-top:20px;}
 			div.session {font-size: 58px; color: rgb(79,96,106); font-family: "Franklin Gothic";}
 			.wrap { margin-left: 45px; }
-			.time { background-color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
+			.time { background-color: #8dc63f;font-family: "franklin-gothic-urw";color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
             .session-time-block { width: 250px;float: left;}
             .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
-			.upcoming-sessions { color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
+			.upcoming-sessions { color: #8dc63f;font-family: "franklin-gothic-urw";font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
 		    #expo_hall_stage_header {margin-top:480px;color:#343895;font-size: 100px;font-family: "franklin-gothic-urw"; padding-left:35px}
             #current_session_header {margin-top:0px;}
@@ -176,7 +176,7 @@
         <script type="text/javascript" src="/js/display.js?ver=7.1.1.4"></script>
     
         <script type="text/javascript">
-            var scrollTop = 580;
+            var scrollTop = 640;
 
             setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
             setInterval(future, 50000);
@@ -204,18 +204,43 @@
             function adjustCurrentSession() {
                 var session_title_len = $('div#current_title').text().replace(/ /g, '').length;
                 if (session_title_len >= 80) {
-                    $('div#current_title').css({ "font-size": '40px' });
-                    $('div#current_speaker').css({ "font-size": '32px' });
+                    $('div#current_title').css({ "font-size": '36px' });
                     $('.single .session-speaker-block').css({ "top": '20px' });
-                } else if (session_title_len >= 40 && session_title_len < 80) {
+
+                    $('div#current_speaker').css({ "font-size": '26px' });
+
+                } else if (session_title_len >= 40 && session_title_len < 70) {
                     $('div#current_title').css({ "font-size": '46px' });
-                    $('div#current_speaker').css({ "font-size": '36px' });
                     $('.single .session-speaker-block').css({ "top": '12px' });
+
+                    var speakers_len = $('div#current_speaker').text().replace(/ /g, '').length;
+                    if (speakers_len >= 25) {
+                        $('div#current_speaker').css({ "font-size": '22px' });
+                    } else {
+                        $('div#current_speaker').css({ "font-size": '30px' });
+                    }
+
+                } else if (session_title_len >= 25 && session_title_len < 40) {
+                    $('div#current_title').css({ "font-size": '58px' });
+                    $('.single .session-speaker-block').css({ "top": '0px' });
+
+                    var speakers_len = $('div#current_speaker').text().replace(/ /g, '').length;
+                    if (speakers_len >= 25) {
+                        $('div#current_speaker').css({ "font-size": '26px' });
+                    } else {
+                        $('div#current_speaker').css({ "font-size": '46px' });
+                    }
                 } else {
                     $('div#current_title').css({ "font-size": '58px' });
-                    $('div#current_speaker').css({ "font-size": '46px' });
                     $('.single .session-speaker-block').css({ "top": '0px' });
+                    var speakers_len = $('div#current_speaker').text().replace(/ /g, '').length;
+                    if (speakers_len >= 25) {
+                        $('div#current_speaker').css({ "font-size": '32px' });
+                    } else {
+                        $('div#current_speaker').css({ "font-size": '46px' });
+                    }
                 }
+
             }
 
             $(document).ready(function () {
