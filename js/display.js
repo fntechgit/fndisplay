@@ -223,7 +223,7 @@ function future() {
             $.each(data.d, function(key, value) {
                 inner_content += '<div class="session">'
                     + '<div class="session-type-block"' + ' style="background-color:' + value['event_bgcolor'] + '"></div>'
-                    + '<div class="session-time-block"><div class="start-time">' + value['event_start'] + '</div></div><div class="session-speaker-block">'
+                    + '<div class="session-time-block"><div class="start-time">' + value['event_start'].replace(" ","") + '</div></div><div class="session-speaker-block">'
                     + '<div class="session-title">'
                     + value['name'] + '</div><div class="speaker-name">' + (value['speakers'] == null ? '' : value['speakers']) + '</div></div></div><div class="space"></div>';
             });
@@ -306,12 +306,12 @@ function futureRegistration_OCP_REGISTRATION_2018() {
                 if (time == session_start) {
                     inner_content += '<div class="session">'
                         + '<div class="session-type"' + ' style="background-color:' + value['event_bgcolor'] + '"></div>'
-                        + '<div class="session-speaker-block"><div class="session-title">' + value['name'] + '</div><div class="speaker-name">' + value['speakers'] + '</div><div class="room-name">' + value['venue'] + '</div></div></div><div class="space"></div>';
+                        + '<div class="session-speaker-block"><div class="session-title">' + value['name'] + '</div><div class="speaker-name">' + value['speakers'] + '</div><div class="room-name">' + value['venue'].toUpperCase() + '</div></div></div><div class="space"></div>';
                 } else {
                     inner_content += '<div class="session">'
-                        + '<div class="session-time-block"><div class="start-time">' + session_start + '</div></div>'
+                        + '<div class="session-time-block"><div class="start-time">' + session_start.replace(" ","") + '</div></div>'
                         + '<div class="session-type-block"><div class="session-type"' + ' style="background-color:' + value['event_bgcolor'] + '"></div></div>'
-                        + '<div class="session-speaker-block"><div class="session-title">' + value['name'] + '</div><div class="speaker-name">' + value['speakers'] + '</div><div class="room-name">' + value['venue'] + '</div></div></div><div class="space"></div>';
+                        + '<div class="session-speaker-block"><div class="session-title">' + value['name'] + '</div><div class="speaker-name">' + value['speakers'] + '</div><div class="room-name">' + value['venue'].toUpperCase() + '</div></div></div><div class="space"></div>';
                     time = session_start;
                 }
 
@@ -665,7 +665,7 @@ function server_time() {
         dataType: "json",
         success: function (data, status) {
 
-            $("#current_time").text(data.d);
+            $("#current_time").text(data.d.replace(" ",""));
 
         }
     });

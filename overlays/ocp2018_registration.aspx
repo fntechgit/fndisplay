@@ -22,7 +22,7 @@
 		
 		<style type="text/css">
 
-			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden; */}	
+			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; letter-spacing: 1px; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden; */}	
 			.wrapper { width: 1080px; height: 1920px; }
 			.content { position: absolute;top: 785px; font-family: "Titling Gothic FB Nar Standard";font-style: normal;font-weight: normal;color: #4e4e4e;font-size: 52px;clear: both;overflow: hidden;height: 1030px;width:910px: }
             .current-wrapper { position: relative;width: 910px; }
@@ -80,15 +80,15 @@
             .session { width: 100%;float: left;position: relative;padding-left: 10px;margin-bottom: 50px; }
             .session-time-block { width: 280px;float: left;display: inline-block; }
             .session-speaker-block { width: 720px;float: left;}
-            .time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 30px;float: left; }
-            .start-time { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
-            .session-title { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 100%;float: left; }
-            .speaker-name { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
-            .room-name { color: #6bdf33;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 42px;width: 100%;float: left; }
+            .time { background-color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 30px;float: left; }
+            .start-time { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 100%;float: left; }
+            .speaker-name { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400; letter-spacing: 1px; font-size: 46px;width: 100%;float: left; }
+            .room-name { color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 42px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
 
-            .upcoming-sessions { color: #6bdf33;font-family: "franklin-gothic-urw", sans-serif;font-size: 58px;font-weight: 500;width: 100%;float: left; }
+            .upcoming-sessions { color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;font-size: 58px;font-weight: 500;width: 100%;float: left; }
 
             .line {position: relative;float: left;width: 100%;height: 46px;background-image: url('/uploads/ocp_line.png');background-repeat: no-repeat; }
 
@@ -99,14 +99,14 @@
 			
 			.single .session { padding-top: 30px; padding-left: 45px; width:950px;}
 			div.session {font-size: 58px; color: rgb(79,96,106); font-family: "Franklin Gothic";}
-			.time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
+			.time { background-color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
 			.session-type-block {width: 700px;}
             .session-type {width: 41px; height: 41px; border-radius: 21px; float:left; margin-top: 12px; margin-right: 15px;}
 			.session-time-block { width: 260px;float: left;}
             .session-speaker-block { width: 660px;float: left; padding-left:10px;}			
 			.session-title { width: 940px;}			
             .future-sessions .session-time-block {width: 700px; padding-left:65px;padding-bottom:10px;}
-		    .future-sessions .session-time-block .start-time {color: #6bdf33;}
+		    .future-sessions .session-time-block .start-time {color: #8dc63f;}
             #content { margin-left: 45px; }
 
 		</style>
@@ -132,7 +132,7 @@
                 <div class="session">
                     <div class="session-time-block">
                         <div class="start-time" id="current_time">
-                            <%= DateTime.Now.ToShortTimeString() %>
+                            <%= DateTime.Now.ToShortTimeString().Replace(" ","") %>
                         </div>
                         <div class="time" id="current_time">
                             CURRENT TIME
@@ -170,10 +170,10 @@
             setInterval(futureRegistration_OCP_REGISTRATION_2018, 50000);
             setInterval(server_time, 5000);
 
-                if ($("#future_sessions").height() > $("#sessions").height()) {
-                    // make it scroll
-                    $("#future_sessions").animate({ top: "-" + $("#future_sessions").height() }, ($("#future_sessions").height() * 20), "linear", slideBottom);
-                }
+            if ($("#future_sessions").height() > $(".sessions").height()) {
+                // make it scroll
+                $("#future_sessions").animate({ top: "-" + $("#future_sessions").height() }, ($("#future_sessions").height() * 20), "linear", slideBottom);
+            }
 
 
             //refreshNews();

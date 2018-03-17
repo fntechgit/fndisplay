@@ -111,12 +111,12 @@ namespace fnsignDisplay.overlays
                                     new LiteralControl(
                                         "<div class=\"session\">" +
                                         "<div class=\"session-time-block\"><div class=\"start-time\">" +
-                                        s.start.ToShortTimeString() +
+                                        s.start.ToShortTimeString().Replace(" ", "") +
                                         "</div></div>" +
                                         "<div class=\"session-type-block\"><div class=\"session-type\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div></div>" +
                                         "<div class=\"session-speaker-block\"><div class=\"session-title\">" +
                                         s.name + "</div><div class=\"speaker-name\">" + s.speakers +
-                                        "</div><div class=\"room-name\">" + s.venue +
+                                        "</div><div class=\"room-name\">" + s.venue.ToUpper() +
                                         "</div></div></div><div class=\"space\"></div>"));
 
                                 old = s.start;
@@ -129,7 +129,7 @@ namespace fnsignDisplay.overlays
                                         "<div class=\"session-type\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div>" +
                                         "<div class=\"session-speaker-block\"><div class=\"session-title\">" +
                                         s.name + "</div><div class=\"speaker-name\">" + s.speakers +
-                                        "</div><div class=\"room-name\">" + s.venue +
+                                        "</div><div class=\"room-name\">" + s.venue.ToUpper() +
                                         "</div></div></div><div class=\"space\"></div>"));
                             }
                         }

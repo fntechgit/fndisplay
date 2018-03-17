@@ -22,7 +22,7 @@
 		
 		<style type="text/css">
 
-			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden;*/ }	
+			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; letter-spacing: 1px; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden;*/ }	
 			.wrapper { width: 1080px; height: 1920px; }
 			.content { position: absolute;top: 785px; font-family: "Titling Gothic FB Nar Standard";font-style: normal;font-weight: normal;color: #4e4e4e;font-size: 52px;clear: both;overflow: hidden;height: 1030px;width:910px: }
             .current-wrapper { position: relative;width: 910px; }
@@ -78,9 +78,9 @@
             /* OCP 2018 HACKS */
             .sessions { width: 100%;position: relative;clear: both;height: 580px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
-            .start-time { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
-            .session-title { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
-            .speaker-name { color: #4f606a;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400;font-size: 46px;width: 100%;float: left; }
+            .start-time { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
+            .session-title { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 500;font-size: 58px;width: 98%;float: left; }
+            .speaker-name { color: #5f6062;font-family: "franklin-gothic-urw", sans-serif;font-weight: 400; letter-spacing: 1px; font-size: 46px;width: 100%;float: left; }
 
             .future-sessions { width: 100%;position: absolute;}
             /*.future-sessions .session-title { border-bottom: 1px solid rgba(0,0,0,0.15); border-left: 1px solid transparent; border-radius: 4px; border-right: 1px solid rgba(0,0,0,0.15); border-top: 1px solid transparent; padding-left:5px; padding-bottom:3px;}*/
@@ -95,12 +95,12 @@
 			#current_session_header div.session { height: 220px; padding-top:20px;}
 			div.session {font-size: 58px; color: rgb(79,96,106); font-family: "Franklin Gothic";}
 			.wrap { margin-left: 45px; }
-			.time { background-color: #6adf32;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
+			.time { background-color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
             .session-time-block { width: 250px;float: left;}
             .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
-			.upcoming-sessions { color: #6bdf33;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
+			.upcoming-sessions { color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
-		    #expo_hall_stage_header {margin-top:480px;color:#0b10cc;font-size: 100px;font-family: "franklin-gothic-urw"; padding-left:35px}
+		    #expo_hall_stage_header {margin-top:480px;color:#343895;font-size: 100px;font-family: "franklin-gothic-urw"; padding-left:35px}
             #current_session_header {margin-top:0px;}
 
             /*New style changes*/
@@ -140,7 +140,7 @@
                     <div class="session-type-block" id="current_type" style="background-color:<%= current_bgcolor %>"></div>
                     <div class="session-time-block">
                         <div class="start-time" id="current_time">
-                            <%= DateTime.Now.ToShortTimeString() %>
+                            <%= DateTime.Now.ToShortTimeString().Replace(" ","") %>
                         </div>
                         <div class="time">
                             CURRENT TIME
@@ -183,10 +183,10 @@
             setInterval(session_full_OCP_BREAKOUT_2018, 5000);
             setInterval(server_time, 5000);
 
-                if ($("#future_sessions").height() > $("#sessions").height()) {
-                    // make it scroll
-                    $("#future_sessions").animate({ top: "-" + $("#future_sessions").height() }, ($("#future_sessions").height() * 20), "linear", slideBottom);
-                }
+            if ($("#future_sessions").height() > $(".sessions").height()) {
+                // make it scroll
+                $("#future_sessions").animate({ top: "-" + $("#future_sessions").height() }, ($("#future_sessions").height() * 20), "linear", slideBottom);
+            }
 
             function slideBottom() {
 
