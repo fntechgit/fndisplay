@@ -41,8 +41,7 @@ namespace fnsignDisplay.overlays
         {
             if (Session["event_id"] != null)
             {
-                //fnsignUrl = _settings.site_url();
-                fnsignUrl = "http://fnsign.staging.fntech.com";
+                fnsignUrl = _settings.site_url();
 
                 Terminal t = _terminals.single(Convert.ToInt32(Session["event_id"]),
                     Convert.ToInt32(Page.RouteData.Values["id"]));
