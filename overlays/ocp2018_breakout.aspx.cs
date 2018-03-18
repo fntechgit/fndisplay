@@ -76,7 +76,7 @@ namespace fnsignDisplay.overlays
 
                     Int32 i = 0;
 
-                    Session current = _sessions.current(ev.id, l.sched_id, _timewarp.display(t.event_id));
+                    Session current = _sessions.current(ev.id, l.sched_id, _timewarp.display(t.event_id).AddMinutes(5));
 
                     //TODO: In next method in sessions it's returning a value when no session is coming back. 
                     if (current.internal_id == 0)

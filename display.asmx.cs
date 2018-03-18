@@ -34,7 +34,7 @@ namespace fnsignDisplay
 
             Event ev = _events.single(event_id);
 
-            Session s = _sessions.current(event_id, location, _timewarp.display(event_id));
+            Session s = _sessions.current(event_id, location, _timewarp.display(event_id).AddMinutes(5));
 
             if (s.internal_id == 0)
             {

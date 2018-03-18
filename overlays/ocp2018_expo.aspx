@@ -201,48 +201,6 @@
                 slideBottom();
             }
 
-            function adjustCurrentSession() {
-                var session_title_len = $('div#current_title').text().replace(/ /g, '').length;
-                if (session_title_len >= 80) {
-                    $('div#current_title').css({ "font-size": '36px' });
-                    $('.single .session-speaker-block').css({ "top": '20px' });
-
-                    $('div#current_speaker').css({ "font-size": '26px' });
-
-                } else if (session_title_len >= 40 && session_title_len < 70) {
-                    $('div#current_title').css({ "font-size": '46px' });
-                    $('.single .session-speaker-block').css({ "top": '12px' });
-
-                    var speakers_len = $('div#current_speaker').text().replace(/ /g, '').length;
-                    if (speakers_len >= 25) {
-                        $('div#current_speaker').css({ "font-size": '22px' });
-                    } else {
-                        $('div#current_speaker').css({ "font-size": '30px' });
-                    }
-
-                } else if (session_title_len >= 25 && session_title_len < 40) {
-                    $('div#current_title').css({ "font-size": '58px' });
-                    $('.single .session-speaker-block').css({ "top": '0px' });
-
-                    var speakers_len = $('div#current_speaker').text().replace(/ /g, '').length;
-                    if (speakers_len >= 25) {
-                        $('div#current_speaker').css({ "font-size": '26px' });
-                    } else {
-                        $('div#current_speaker').css({ "font-size": '46px' });
-                    }
-                } else {
-                    $('div#current_title').css({ "font-size": '58px' });
-                    $('.single .session-speaker-block').css({ "top": '0px' });
-                    var speakers_len = $('div#current_speaker').text().replace(/ /g, '').length;
-                    if (speakers_len >= 25) {
-                        $('div#current_speaker').css({ "font-size": '32px' });
-                    } else {
-                        $('div#current_speaker').css({ "font-size": '46px' });
-                    }
-                }
-
-            }
-
             $(document).ready(function () {
                 adjustCurrentSession();
             })
