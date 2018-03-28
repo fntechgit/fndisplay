@@ -4,10 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="https://momentjs.com/downloads/moment.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="http://momentjs.com/downloads/moment.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         
         <script src="/js/daily.js?ver=10.28.16" type="text/javascript"></script>
         
@@ -103,7 +103,7 @@
             /*New style changes*/
             .single .session-speaker-block { position:inherit;}
             .session-speaker-block {width: 620px;}
-		    .wrap { margin-left: 65px;}
+		    .wrap { margin-left: 70px;}
 		    .upcoming-sessions { margin-left: 60px;}
             .single .session-time-block { padding-left: 5px;}
             .single .session  { width: 1010px;}
@@ -170,10 +170,10 @@
         <script type="text/javascript">
             var scrollTop = 820;
 
-            setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
-            setInterval(future, 50000);
-            setInterval(session_full_OCP_BREAKOUT_2018, 5000);
-            setInterval(server_time, 5000);
+            //setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
+            //setInterval(future, 50000);
+            //setInterval(session_full_OCP_BREAKOUT_2018, 5000);
+            //setInterval(server_time, 5000);
 
             if ($("#future_sessions").height() > $(".sessions").height()) {
                 // make it scroll

@@ -4,10 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="https://momentjs.com/downloads/moment.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="http://momentjs.com/downloads/moment.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         
         <script src="/js/daily.js?ver=10.28.16" type="text/javascript"></script>
         
@@ -97,7 +97,7 @@
 
             .session-type-block {width: 41px; height: 41px; border-radius: 21px;}
 			
-			.single .session { padding-top: 30px; padding-left: 45px; width:950px;}
+			.single .session { padding-top: 30px; padding-left: 57px; width:950px;}
 			div.session {font-size: 58px; color: rgb(79,96,106); font-family: "Franklin Gothic";}
 			.time { background-color: #8dc63f;font-family: "franklin-gothic-urw", sans-serif;color: #ffffff;font-weight: 500;padding: 15px;font-size: 24px;float: left; padding-top: 10px;    padding-bottom: 10px;    padding-right: 30px;    padding-left: 30px;}
 			.session-type-block {width: 700px;}
@@ -107,7 +107,7 @@
 			.session-title { width: 940px;}			
             .future-sessions .session-time-block {width: 700px; padding-left:65px;padding-bottom:10px;}
 		    .future-sessions .session-time-block .start-time {color: #8dc63f;}
-            #content { margin-left: 45px; }
+            #content { margin-left: 52px; }
 
 		</style>
 

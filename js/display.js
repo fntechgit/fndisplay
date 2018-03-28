@@ -44,6 +44,22 @@ function adjustCurrentSession() {
             $('div#current_speaker').css({ "font-size": '46px' });
         }
     }
+	
+	exception_title = $('div#current_title').text().replace(/[\n\r]/g, '').trim();
+	if (exception_title = 'Switch ASIC Programmability with SAI') 
+	{
+		$('div#current_title').css({ "font-size": '50px' });
+		$('.single .session-speaker-block').css({ "top": '12px' });
+		$('div#current_speaker').css({ "font-size": '34px' });
+	}
+	
+	exception_title = $('div#current_title').text().replace(/[\n\r]/g, '').trim();
+	if (exception_title = 'Disruption at the Edge: An update on the Central Office CORD on OCP - Presented by Flex') 
+	{
+		$('div#current_title').css({ "font-size": '36px' });
+		$('.single .session-speaker-block').css({ "top": '20px' });
+		$('div#current_speaker').css({ "font-size": '26px' });
+	}		
 
 }
 
