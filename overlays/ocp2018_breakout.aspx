@@ -170,10 +170,10 @@
         <script type="text/javascript">
             var scrollTop = 820;
 
-            //setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
-            //setInterval(future, 50000);
-            //setInterval(session_full_OCP_BREAKOUT_2018, 5000);
-            //setInterval(server_time, 5000);
+            setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
+            setInterval(future, 50000);
+            setInterval(session_full_OCP_BREAKOUT_2018, 5000);
+            setInterval(server_time, 5000);
 
             if ($("#future_sessions").height() > $(".sessions").height()) {
                 // make it scroll
