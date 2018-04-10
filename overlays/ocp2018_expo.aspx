@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    <%--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%> 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://momentjs.com/downloads/moment.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>

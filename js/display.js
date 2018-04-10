@@ -731,6 +731,17 @@ function server_time() {
     });
 }
 
+function registration_day() {
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    var now = new Date();
+    var thisMonth = months[now.getMonth()];
+    var thisDayOfWeek = days[now.getDay()];
+    var thisDay = now.getDate();
+    $("#registration_day").text(thisDayOfWeek + ', ' + thisMonth + ' ' + thisDay);
+}
+
 
 var $mq = $(".ticker");
 

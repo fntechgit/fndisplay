@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    <%--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%> 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://momentjs.com/downloads/moment.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -140,7 +140,7 @@
                     </div>
                     <div class="session-speaker-block">
                         <div class="upcoming-sessions" id="registration_day">
-                            <%= day_of_week %>, March <%= number_of_date %>
+                            <%= day_of_week %>, <%= month_of_date %> <%= number_of_date %>
                         </div>
                         <div class="upcoming-sessions">
                             Summit Schedule
@@ -169,6 +169,7 @@
             setInterval(refreshData, 7500);
             setInterval(futureRegistration_OCP_REGISTRATION_2018, 50000);
             setInterval(server_time, 5000);
+            setInterval(registration_day, 50000);
 
             if ($("#future_sessions").height() > $(".sessions").height()) {
                 // make it scroll

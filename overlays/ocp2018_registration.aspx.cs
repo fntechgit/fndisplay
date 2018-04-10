@@ -37,6 +37,7 @@ namespace fnsignDisplay.overlays
 
         public string day_of_week = "Monday";
         public string number_of_date = "6";
+        public string month_of_date = "April";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,6 +56,8 @@ namespace fnsignDisplay.overlays
 
                 day_of_week = td.DayOfWeek.ToString();
                 number_of_date = td.Day.ToString();
+                month_of_date = td.ToString("MMMM");
+
 
                 if (t.template_id > 0)
                 {
