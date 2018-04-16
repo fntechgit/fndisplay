@@ -98,6 +98,19 @@ namespace fnsignDisplay
             return DateTime.Now.ToShortTimeString();
         }
 
+        [WebMethod(Description = "Return Server Time or Timewarp", EnableSession = true)]
+        public string server_time_or_timewarp()
+        {
+            return _timewarp.display(Convert.ToInt32(Context.Session["event_id"])).ToShortTimeString();
+        }
+
+        [WebMethod(Description = "Return Server Date or Timewarp", EnableSession = true)]
+        public string server_date_or_timewarp()
+        {
+            var current_server_date = _timewarp.display(Convert.ToInt32(Context.Session["event_id"]));
+            return string.Format("{0}, {1} {2}", current_server_date.DayOfWeek.ToString(), current_server_date.ToString("MMMM"), current_server_date.Day.ToString());
+        }
+
         [WebMethod(Description = "Schedule by Day", EnableSession = true)]
         public List<Session> schedule_by_event()
         {

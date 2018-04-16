@@ -3,6 +3,27 @@
 var theContent = '';
 var wasFull = false;
 
+function setCurrentCss()
+{
+    $('div#current_title').css({ "font-size": '58px' });
+    $('div#current_speaker').css({ "font-size": '46px' });
+    $('.single .session-speaker-block').css({ "top": '0px' });
+}
+
+function fixSize(element, height, adjust, adjustTop) {
+    if ($(element).height() > height) {
+        var font = parseInt($(element).css("font-size"));
+        $(element).css({ "font-size": (font - adjust) + "px" });
+
+        if (adjustTop > 0) {
+            var top = parseInt($('.single .session-speaker-block').css("top"));
+            $('.single .session-speaker-block').css({ "top": (top + adjustTop) + 'px' });
+        }
+
+        fixSize(element, height, adjust, adjustTop);
+    }
+}
+
 function adjustCurrentSession() {
     //var session_title_len = $('div#current_title').text().replace(/ /g, '').replace(/[\n\r]/g, '').length;
     var session_title_len = $('div#current_title').text().replace(/[\n\r]/g, '').trim().length;
@@ -79,7 +100,7 @@ function refreshData() {
         dataType: "json",
         success: function (data, status) {
 
-            server_time();
+            server_time_or_timewarp();
 
             if (data.d.event_id == 0) {
 
@@ -161,7 +182,7 @@ function refreshData_OCP_BREAKOUT_2018() {
         dataType: "json",
         success: function (data, status) {
 
-            server_time();
+            server_time_or_timewarp();
 
             if (data.d.event_id == 0) {
                 var cookie_id = $.cookie("FNSIGN_EventID");
@@ -192,7 +213,11 @@ function refreshData_OCP_BREAKOUT_2018() {
 
                 background();
 
-                adjustCurrentSession();
+                //adjustCurrentSession();
+
+                setCurrentCss();
+                fixSize('div#current_title', 140, 4, 4);
+                fixSize('div#current_speaker', 95, 2, 0);
 
             }
         }
@@ -677,7 +702,7 @@ function session_full_OCP_BREAKOUT_2018() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data, status) {
-            server_time();
+            server_time_or_timewarp();
 
             if (data.d.event_id == 0) {
                 var cookie_id = $.cookie("FNSIGN_EventID");
@@ -712,6 +737,19 @@ function session_full_OCP_BREAKOUT_2018() {
 
 }
 
+function server_time_or_timewarp() {
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/server_time_or_timewarp",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+            $("#current_time").text(data.d.replace(" ", ""));
+        }
+    });
+}
+
+
 function server_time() {
     // check for announcement
     terminal_id = $("#terminal_id").val();
@@ -732,14 +770,16 @@ function server_time() {
 }
 
 function registration_day() {
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/server_date_or_timewarp",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+            $("#registration_day").text(data.d);
+        }
+    });
 
-    var now = new Date();
-    var thisMonth = months[now.getMonth()];
-    var thisDayOfWeek = days[now.getDay()];
-    var thisDay = now.getDate();
-    $("#registration_day").text(thisDayOfWeek + ', ' + thisMonth + ' ' + thisDay);
 }
 
 

@@ -132,7 +132,7 @@
                     <div class="session-type-block" id="current_type" style="background-color:<%= current_bgcolor %>"></div>
                     <div class="session-time-block">
                         <div class="start-time" id="current_time">
-                            <%= DateTime.Now.ToShortTimeString().Replace(" ","") %>
+                            <%= current_server_date.ToShortTimeString().Replace(" ","") %>
                         </div>
                         <div class="time">
                             CURRENT TIME
@@ -173,7 +173,7 @@
             setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
             setInterval(future, 50000);
             setInterval(session_full_OCP_BREAKOUT_2018, 5000);
-            setInterval(server_time, 5000);
+            setInterval(server_time_or_timewarp, 5000);
 
             if ($("#future_sessions").height() > $(".sessions").height()) {
                 // make it scroll
@@ -194,9 +194,11 @@
             }
 
             $(document).ready(function () {
-                adjustCurrentSession();
+                //adjustCurrentSession();
+                fixSize('div#current_title', 140, 4, 4);
+                fixSize('div#current_speaker', 60, 2, 0);
             })
-		
+	
 		</script>
     </form>
 </body>

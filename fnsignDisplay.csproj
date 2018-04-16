@@ -1695,6 +1695,7 @@
     <Content Include="overlays\ocp2017_breakout.aspx" />
     <Content Include="overlays\ocp2017_registration.aspx" />
     <Content Include="overlays\ocp2018_breakout.aspx" />
+    <Content Include="overlays\ocp2018_breakout_testcurrentsize.aspx" />
     <Content Include="overlays\ocp2018_expo.aspx" />
     <Content Include="overlays\ocp2018_registration.aspx" />
     <Content Include="overlays\overlay_1920V_no_twitter.aspx" />
@@ -1882,6 +1883,13 @@
     </Compile>
     <Compile Include="overlays\ocp2018_breakout.aspx.designer.cs">
       <DependentUpon>ocp2018_breakout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\ocp2018_breakout_testcurrentsize.aspx.cs">
+      <DependentUpon>ocp2018_breakout_testcurrentsize.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\ocp2018_breakout_testcurrentsize.aspx.designer.cs">
+      <DependentUpon>ocp2018_breakout_testcurrentsize.aspx</DependentUpon>
     </Compile>
     <Compile Include="overlays\ocp2018_expo.aspx.cs">
       <DependentUpon>ocp2018_expo.aspx</DependentUpon>

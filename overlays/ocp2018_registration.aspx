@@ -132,7 +132,7 @@
                 <div class="session">
                     <div class="session-time-block">
                         <div class="start-time" id="current_time">
-                            <%= DateTime.Now.ToShortTimeString().Replace(" ","") %>
+                            <%= current_server_date.ToShortTimeString().Replace(" ","") %>
                         </div>
                         <div class="time" id="current_time">
                             CURRENT TIME
@@ -168,7 +168,7 @@
 
             setInterval(refreshData, 7500);
             setInterval(futureRegistration_OCP_REGISTRATION_2018, 50000);
-            setInterval(server_time, 5000);
+            setInterval(server_time_or_timewarp, 5000);
             setInterval(registration_day, 50000);
 
             if ($("#future_sessions").height() > $(".sessions").height()) {

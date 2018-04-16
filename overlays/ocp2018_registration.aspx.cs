@@ -39,6 +39,8 @@ namespace fnsignDisplay.overlays
         public string number_of_date = "6";
         public string month_of_date = "April";
 
+        public DateTime current_server_date;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["event_id"] != null)
@@ -50,17 +52,13 @@ namespace fnsignDisplay.overlays
 
                 Event ev = _events.single(Convert.ToInt32(Session["event_id"]));
 
-                DateTime td = new DateTime();
-
-                td = DateTime.Today;
-
-                day_of_week = td.DayOfWeek.ToString();
-                number_of_date = td.Day.ToString();
-                month_of_date = td.ToString("MMMM");
-
-
                 if (t.template_id > 0)
                 {
+                    current_server_date = _timewarp.display(t.event_id);
+                    day_of_week = current_server_date.DayOfWeek.ToString();
+                    number_of_date = current_server_date.Day.ToString();
+                    month_of_date = current_server_date.ToString("MMMM");
+
                     // fill the content
                     Location l = _locations.single(Convert.ToInt32(t.location_id));
 

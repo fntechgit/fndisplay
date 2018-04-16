@@ -37,6 +37,8 @@ namespace fnsignDisplay.overlays
         public string current_bgcolor = "#FFFFFF";
         public string current_full_session_graphic = "";
 
+        public DateTime current_server_date;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["event_id"] != null)
@@ -50,6 +52,8 @@ namespace fnsignDisplay.overlays
 
                 if (t.template_id > 0)
                 {
+                    current_server_date = _timewarp.display(t.event_id);
+
                     // fill the content
                     Location l = _locations.single(Convert.ToInt32(t.location_id));
 

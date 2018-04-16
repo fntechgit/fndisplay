@@ -60,6 +60,9 @@ namespace fnsignDisplay
             routes.MapPageRoute("preview-with-end-of-day-route", "preview/{event_id}/{location_id}/{overlay_id}/end-of-day/{end_id}/{type}", "~/overlay_display.aspx");
             routes.MapPageRoute("preview-with-announcement-and-end-of-day-route", "preview/{event_id}/{location_id}/{overlay_id}/{announcement_id}/{end_id}/{type}", "~/overlay_display.aspx");
 
+            //test route
+            routes.MapPageRoute("ocp-2018-breakout-route-test", "current_session_test/{id}", "~/overlays/ocp2018_breakout_testcurrentsize.aspx");
+
             // general routes
             routes.MapPageRoute("overlay-template-builder-route", "overlay/display/{id}", "~/overlay_display.aspx");
         }

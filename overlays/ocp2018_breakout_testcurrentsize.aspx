@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ocp2018_expo.aspx.cs" Inherits="fnsignDisplay.overlays.ocp2018_expo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ocp2018_breakout_testcurrentsize.aspx.cs" Inherits="fnsignDisplay.overlays.ocp2018_breakout_testcurrentsize" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <%--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%> 
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://momentjs.com/downloads/moment.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -22,7 +22,7 @@
 		
 		<style type="text/css">
 
-			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; letter-spacing: 1px; font-size: 36px;color: #000000;background-image: url('<%= fnsignUrl %>/uploads/<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden;*/ }	
+			body { width: 1080px; height: 1920px; background-color: #000000; font-family: "Gotham Narrow A", "Gotham Narrow B";font-style: normal;font-weight: 400; letter-spacing: 1px; font-size: 36px;color: #000000;background-image: url('<%= bgimage %>');background-repeat: no-repeat;padding: 0;margin: 0;/*overflow: hidden;*/ }	
 			.wrapper { width: 1080px; height: 1920px; }
 			.content { position: absolute;top: 785px; font-family: "Titling Gothic FB Nar Standard";font-style: normal;font-weight: normal;color: #4e4e4e;font-size: 52px;clear: both;overflow: hidden;height: 1030px;width:910px: }
             .current-wrapper { position: relative;width: 910px; }
@@ -69,14 +69,14 @@
             .article-author-name { color: #33a8df; }
             .article-author-job-title { font-size: 50px;font-family: Helvetica;color: #4a4f55; }
 
-            .Franklin-Gothic { font-family: "franklin-gothic-urw", sans-serif;}
+            .Franklin-Gothic { font-family: "franklin-gothic-urw";}
             .medium { font-weight: 500; }
             .book { font-weight: 400; }
 
             .space { height: 50px;margin-bottom: 50px; }
 
             /* OCP 2018 HACKS */
-            .sessions { width: 100%;position: relative;clear: both;height: 640px;overflow: hidden; }
+            .sessions { width: 100%;position: relative;clear: both;height: 820px;overflow: hidden; }
             .session { width: 100%;float: left;position: relative;padding-right: 10px;margin-bottom: 50px; }
             .start-time { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 58px;float: left;text-transform: lowercase; }
             .session-title { color: #5f6062;font-family: "franklin-gothic-urw";font-weight: 500;font-size: 58px;width: 98%;float: left; }
@@ -100,9 +100,6 @@
             .session-speaker-block { width: 660px;float: left; padding-left:60px;}			
 			.upcoming-sessions { color: #8dc63f;font-family: "franklin-gothic-urw";font-size: 46px;font-weight: 500; margin-bottom: 50px; margin-left: 50px; }
 
-		    #expo_hall_stage_header {margin-top:480px;color:#343895;font-size: 100px;font-family: "franklin-gothic-urw"; padding-left:35px}
-            #current_session_header {margin-top:0px;}
-
             /*New style changes*/
             .single .session-speaker-block { position:inherit;}
             .session-speaker-block {width: 620px;}
@@ -110,6 +107,7 @@
 		    .upcoming-sessions { margin-left: 60px;}
             .single .session-time-block { padding-left: 5px;}
             .single .session  { width: 1010px;}
+
 		</style>
 
 </head>
@@ -120,6 +118,9 @@
         <asp:HiddenField runat="server" ID="location_sched" />
         <asp:HiddenField runat="server" ID="terminal_id" />
         <asp:HiddenField runat="server" ID="current_date" />
+
+        <asp:HiddenField runat="server" ID="hdn_multiple_sessions" />
+        <asp:HiddenField runat="server" ID="hdn_multiple_speakers" />
         
         <asp:Panel runat="server" ID="video_bg" Visible="false">
             <video autoplay loop id="bgvid">
@@ -129,18 +130,12 @@
 
         <div class="wrapper">
             <div class="wrap">
-                <div class="single" id="expo_hall_stage_header">
-                    Expo Hall Stage Talks
-                </div>
-            </div>
-            <div class="line"></div>
-            <div class="wrap">
                 <div class="single" id="current_session_header">
                 <div class="session">
                     <div class="session-type-block" id="current_type" style="background-color:<%= current_bgcolor %>"></div>
                     <div class="session-time-block">
                         <div class="start-time" id="current_time">
-                            <%= current_server_date.ToShortTimeString().Replace(" ","") %>
+                            <%= DateTime.Now.ToShortTimeString().Replace(" ","") %>
                         </div>
                         <div class="time">
                             CURRENT TIME
@@ -170,22 +165,22 @@
         
         <div class="ticker"></div>
         <div id="full_session_graphic"><%= fnsignUrl %>/uploads/<%= current_full_session_graphic %></div>
-
+        
         <div class="bottom-overlay"></div>
         
         <script type="text/javascript" src="/js/display.js?ver=7.1.1.4"></script>
     
         <script type="text/javascript">
-            var scrollTop = 640;
+            var scrollTop = 820;
 
-            setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
-            setInterval(future, 50000);
-            setInterval(session_full_OCP_BREAKOUT_2018, 5000);
-            setInterval(server_time_or_timewarp, 5000);
+            //setInterval(refreshData_OCP_BREAKOUT_2018, 7500);
+            //setInterval(future, 50000);
+            //setInterval(session_full_OCP_BREAKOUT_2018, 5000);
+            //setInterval(server_time, 5000);
 
             if ($("#future_sessions").height() > $(".sessions").height()) {
                 // make it scroll
-                $("#future_sessions").animate({ top: "-" + $("#future_sessions").height() }, ($("#future_sessions").height() * 20), "linear", slideBottom);
+                //$("#future_sessions").animate({ top: "-" + $("#future_sessions").height() }, ($("#future_sessions").height() * 20), "linear", slideBottom);
             }
 
             function slideBottom() {
@@ -201,12 +196,37 @@
                 slideBottom();
             }
 
+            var i = -1;
+            var sessions;
+            var speakers;
             $(document).ready(function () {
                 //adjustCurrentSession();
+                //$('div#current_title').text('Dell - Enabling, managing and orchestrating workloads in an OpenStack environment: A behind the scenes look at Intel Rack Scale Architecture and AMI Pod Manager running on rack-scale infrastructure ');
+                //$('div#current_speaker').text('Edmond Bailey, Alaa Yousif');
+                //fixSize('div#current_title', 140, 4, 4);
+                //fixSize('div#current_speaker', 95, 2, 0);
+
+                sessions = $("#hdn_multiple_sessions").val().split(',;,');
+                speakers = $("#hdn_multiple_speakers").val().split(',;,');
+                setInterval(current_session_test, 5000);
+            })
+
+            function current_session_test()
+            {
+                setCurrentCss();
+
+                i = i + 1;
+                $('div#current_title').text(sessions[i]);
+                $('div#current_speaker').text(speakers[i]);
                 fixSize('div#current_title', 140, 4, 4);
                 fixSize('div#current_speaker', 60, 2, 0);
-            })
-		
+
+                if (i >= sessions.length)
+                    i = -1;
+            }
+
+
+	
 		</script>
     </form>
 </body>
