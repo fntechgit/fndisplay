@@ -217,7 +217,7 @@ function refreshData_OCP_BREAKOUT_2018() {
 
                 setCurrentCss();
                 fixSize('div#current_title', 140, 4, 4);
-                fixSize('div#current_speaker', 95, 2, 0);
+                fixSize('div#current_speaker', 60, 2, 0);
 
             }
         }
