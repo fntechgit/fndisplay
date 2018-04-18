@@ -190,8 +190,9 @@
             }
 
             $(document).ready(function () {
-                fixSize('div#current_title', 140, 4, 4);
-                fixSize('div#current_speaker', 60, 2, 0);
+                refreshData_OCP_BREAKOUT_2018();
+                //fixSize('div#current_title', 140, 4, 4);
+                //fixSize('div#current_speaker', 60, 2, 0);
             })
 	
 		</script>
