@@ -100,11 +100,11 @@ namespace fnsignDisplay.overlays
                     }
 
 
-                    List<Session> sess = _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id));
+                    List<Session> sess = _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id).AddMinutes(5.01));
 
                     if (sess.Any())
                     {
-                        foreach (Session s in _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id)))
+                        foreach (Session s in _sessions.future_by_event_by_location_by_day(ev.id, l.sched_id, _timewarp.display(t.event_id).AddMinutes(5.01)))
                         {
                             ph_sessions.Controls.Add(new LiteralControl("<div class=\"session\">"
                                 + "<div class=\"session-type-block\" " + " style=\"background-color:" + s.event_bgcolor + "\"></div>" 

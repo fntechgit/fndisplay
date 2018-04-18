@@ -143,11 +143,11 @@ namespace fnsignDisplay
 
             if (current(location).id == "NO SESSION")
             {
-                sessions = _sessions.by_event_by_location_by_day(Convert.ToInt32(Context.Session["event_id"]), location, _timewarp.display(Convert.ToInt32(Context.Session["event_id"] as string)));
+                sessions = _sessions.by_event_by_location_by_day(Convert.ToInt32(Context.Session["event_id"]), location, _timewarp.display(Convert.ToInt32(Context.Session["event_id"] as string)).AddMinutes(5.01));
             }
             else
             {
-                sessions = _sessions.skip_by_event_by_location_by_day(Convert.ToInt32(Context.Session["event_id"]), location, skip, _timewarp.display(Convert.ToInt32(Context.Session["event_id"] as string)));
+                sessions = _sessions.skip_by_event_by_location_by_day(Convert.ToInt32(Context.Session["event_id"]), location, skip, _timewarp.display(Convert.ToInt32(Context.Session["event_id"] as string)).AddMinutes(5.01));
             }
 
             return sessions;
