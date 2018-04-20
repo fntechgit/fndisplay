@@ -27,6 +27,40 @@ namespace fnsignDisplay
         schedInterface.mediaManager _media = new mediaManager();
         private schedInterface.timewarp _timewarp = new timewarp();
 
+        [WebMethod(Description = "Get Current Session Only", EnableSession = true)]
+        public Session current_session(string location)
+        {
+            Int32 event_id = Convert.ToInt32(Context.Session["event_id"]);
+
+            Session current =  _sessions.current(event_id, location, _timewarp.display(event_id));
+
+            if (current.internal_id != 0)
+            {
+                current.event_start = current.start.ToString("h:mm");
+                current.event_end = current.end.ToString("h:mm tt").ToLower();
+            }
+
+            return current;
+        }
+
+        //To avoid the gap between refreshing current and next.
+        [WebMethod(Description = "Get Next Session Only", EnableSession = true)]
+        public CurrentAndNext current_session_with_next(string location)
+        {
+            Int32 event_id = Convert.ToInt32(Context.Session["event_id"]);
+
+            Session current = _sessions.current(event_id, location, _timewarp.display(event_id));
+            if (current.internal_id != 0)
+            {
+                current.event_start = current.start.ToString("h:mm");
+                current.event_end = current.end.ToString("h:mm tt").ToLower();
+            }
+
+            Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : _timewarp.display(event_id));
+
+            return new CurrentAndNext { current = current, next = next };
+        }
+
         [WebMethod(Description = "Get Current Session", EnableSession = true)]
         public Session current(string location)
         {
@@ -222,5 +256,10 @@ namespace fnsignDisplay
             return _messages.session_full(terminal_id);
         }
 
+    }
+
+    public class CurrentAndNext {
+        public Session current { get; set; }
+        public Session next { get; set; }
     }
 }

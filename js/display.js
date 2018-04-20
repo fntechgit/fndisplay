@@ -3,6 +3,84 @@
 var theContent = '';
 var wasFull = false;
 
+function refreshF8Current() {
+    location_id = $("#location_sched").val();
+
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/current_session_with_next",
+        data: "{'location': '" + location_id + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+
+            //CURRENT
+            if (data.d.current.internal_id != 0) {
+                $('.current-start-time').text(data.d.current.event_start);
+                $('.current-end-time').text(data.d.current.event_end);
+                $('.current-time-separator').text('-');
+
+                $('.current-title').text(data.d.current.name);
+
+                var names = data.d.current.speakers.split(',');
+                var companies = data.d.current.speaker_companies.split(',');
+
+                var html = '';
+                if (names.length == companies.length)
+                {
+                    var index;
+                    for (index = 0; index < names.length; index++) {
+                        html += "<div class='speaker'><div class='speaker-name'>" + names[index].toUpperCase() + "</div><div class='speaker-company'>" + companies[index].toUpperCase() + "</div></div>";
+                    }
+                }
+
+                $('.speaker-list').html(html);
+
+                
+            }
+            else
+            {
+                $('.current-start-time').text('');
+                $('.current-end-time').text('');
+                $('.current-time-separator').text('');
+
+                $('.current-title').text('No official session at this time. Check SCHED for full agenda.');
+
+                $('.speaker-list').html('');
+
+            }
+
+            //NEXT
+            if (data.d.next.internal_id != 0)
+                $('.next-title').text("UP NEXT: " + data.d.next.name);
+            else
+                $('.next-title').text("UP NEXT: No more sessions at this time. Check SCHED for full agenda.");
+        }
+    });
+
+}
+
+/*
+function refreshF8Next() {
+    location_id = $("#location_sched").val();
+
+    $.ajax({
+        type: "POST",
+        url: "/display.asmx/next_session",
+        data: "{'location': '" + location_id + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+            if (data.d.internal_id != 0)
+                $('.next-title').text("UP NEXT: " + data.d.name);
+            else
+                $('.next-title').text("UP NEXT: No more sessions at this time. Check SCHED for full agenda.");
+        }
+    });
+
+}*/
+
+
 function setCurrentCss()
 {
     $('div#current_title').css({ "font-size": '58px' });

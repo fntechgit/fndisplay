@@ -1675,6 +1675,7 @@
     <Content Include="overlays\barcelona_registration.aspx" />
     <Content Include="overlays\barcelona_working_group.aspx" />
     <Content Include="overlays\barcelona_working_groups.aspx" />
+    <Content Include="overlays\f8_2018.aspx" />
     <Content Include="overlays\fonts\generator_config.txt" />
     <Content Include="overlays\fonts\oculussans-black-demo.html" />
     <Content Include="overlays\fonts\oculussans-blackitalic-demo.html" />
@@ -1848,6 +1849,13 @@
     </Compile>
     <Compile Include="overlays\barcelona_working_groups.aspx.designer.cs">
       <DependentUpon>barcelona_working_groups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="overlays\f8_2018.aspx.cs">
+      <DependentUpon>f8_2018.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="overlays\f8_2018.aspx.designer.cs">
+      <DependentUpon>f8_2018.aspx</DependentUpon>
     </Compile>
     <Compile Include="overlays\oc3.aspx.cs">
       <DependentUpon>oc3.aspx</DependentUpon>
