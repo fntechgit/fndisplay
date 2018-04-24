@@ -48,6 +48,7 @@ namespace fnsignDisplay
         public CurrentAndNext current_session_with_next(string location)
         {
             Int32 event_id = Convert.ToInt32(Context.Session["event_id"]);
+            Event evt = _events.single(event_id);
 
             Session current = _sessions.current(event_id, location, _timewarp.display(event_id));
             if (current.internal_id != 0)
@@ -58,7 +59,26 @@ namespace fnsignDisplay
 
             Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : _timewarp.display(event_id));
 
-            return new CurrentAndNext { current = current, next = next };
+            var result = new CurrentAndNext { current = current, next = next };
+
+            if ((current.internal_id == 0) && (next.start > _timewarp.display(event_id))) //BEGINNING OF DAY
+            {
+                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, _timewarp.display(event_id));
+                result.isBeginOfDay = true;
+            }
+            else if ((current.end < _timewarp.display(event_id)) && (next.internal_id == 0)) //END OF DAY
+            {
+                result.isEndOfDay = true;
+                result.EndOfDayMessage = evt != null ? evt.eod_title : "End of day!";
+            }
+            else if (current.full) //SESSION FULL
+            {
+                result.currentIsFull = true;
+                //TODO Update the manager to set a full session message
+                result.currentFullMessage = "Session Full";
+            }
+
+            return result;
         }
 
         [WebMethod(Description = "Get Current Session", EnableSession = true)]
@@ -261,5 +281,11 @@ namespace fnsignDisplay
     public class CurrentAndNext {
         public Session current { get; set; }
         public Session next { get; set; }
+        public bool currentIsFull { get; set; }
+        public string currentFullMessage { get; set; }
+        public bool isEndOfDay { get; set; }
+        public string EndOfDayMessage { get; set; }
+        public bool isBeginOfDay { get; set; }
+        public List<Session> sessions { get; set; }
     }
 }

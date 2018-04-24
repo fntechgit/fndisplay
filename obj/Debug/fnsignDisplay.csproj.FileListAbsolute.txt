@@ -14,7 +14,6 @@ E:\projects\fnsign\fnsignDisplay\bin\TweetSharp.pdb
 E:\projects\fnsign\fnsignDisplay\bin\Hammock.ClientProfile.pdb
 E:\projects\fnsign\fnsignDisplay\bin\Newtonsoft.Json.xml
 D:\Development\Tipit\FNTech\fndisplay-Azure\obj\Debug\fnsignDisplay.csproj.App.config
-D:\Development\Tipit\FNTech\fndisplay-Azure\obj\Debug\fnsignDisplay.csprojResolveAssemblyReference.cache
 D:\Development\Tipit\FNTech\fndisplay-Azure\obj\Debug\fnsignDisplay.dll
 D:\Development\Tipit\FNTech\fndisplay-Azure\obj\Debug\fnsignDisplay.pdb
 D:\Development\Tipit\FNTech\fndisplay-Azure\bin\fnsignDisplay.dll.config

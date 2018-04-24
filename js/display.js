@@ -3,7 +3,10 @@
 var theContent = '';
 var wasFull = false;
 
-function refreshF8Current() {
+//##################################################################################
+//Refreshing F8 Data
+//##################################################################################
+function refreshF8EntryPoint() {
     location_id = $("#location_sched").val();
 
     $.ajax({
@@ -14,72 +17,115 @@ function refreshF8Current() {
         dataType: "json",
         success: function (data, status) {
 
+            //BeginningOfDay?
+            refreshBeginningOfDay(data)
+            //EndOfDay?
+            refreshEndOfDay(data)
+            //IsFull?
+            refreshF8Full(data);
             //CURRENT
-            if (data.d.current.internal_id != 0) {
-                $('.current-start-time').text(data.d.current.event_start);
-                $('.current-end-time').text(data.d.current.event_end);
-                $('.current-time-separator').text('-');
-
-                $('.current-title').text(data.d.current.name);
-
-                var names = data.d.current.speakers.split(',');
-                var companies = data.d.current.speaker_companies.split(',');
-
-                var html = '';
-                if (names.length == companies.length)
-                {
-                    var index;
-                    for (index = 0; index < names.length; index++) {
-                        html += "<div class='speaker'><div class='speaker-name'>" + names[index].toUpperCase() + "</div><div class='speaker-company'>" + companies[index].toUpperCase() + "</div></div>";
-                    }
-                }
-
-                $('.speaker-list').html(html);
-
-                
-            }
-            else
-            {
-                $('.current-start-time').text('');
-                $('.current-end-time').text('');
-                $('.current-time-separator').text('');
-
-                $('.current-title').text('No official session at this time. Check SCHED for full agenda.');
-
-                $('.speaker-list').html('');
-
-            }
-
+            refreshF8Current(data);
             //NEXT
-            if (data.d.next.internal_id != 0)
-                $('.next-title').text("UP NEXT: " + data.d.next.name);
-            else
-                $('.next-title').text("UP NEXT: No more sessions at this time. Check SCHED for full agenda.");
+            refreshF8Next(data);
+                  
         }
     });
 
 }
 
-/*
-function refreshF8Next() {
-    location_id = $("#location_sched").val();
+function refreshBeginningOfDay(data) {
+    if (data.d.isBeginOfDay == true) {
+        $('.bod-wrapper').css({ "display": '' });
 
-    $.ajax({
-        type: "POST",
-        url: "/display.asmx/next_session",
-        data: "{'location': '" + location_id + "'}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data, status) {
-            if (data.d.internal_id != 0)
-                $('.next-title').text("UP NEXT: " + data.d.name);
+        var html = '';
+        $.each(data.d.sessions, function(i) {
+            html += '<div class="bod-session"><div class="bod-line"></div><div class="bod-session-start">' + data.d.sessions[i].event_start.replace('AM', '').replace('PM', '').trim() + '</div><div class="bod-session-title">' + data.d.sessions[i].name + '</div></div>';
+        });
+        $('.bod-content').html(html);
+    }
+    else
+        $('.bod-wrapper').css({ "display": 'none' });
+
+}
+
+function refreshEndOfDay(data) {
+    if (data.d.isBeginOfDay == false && data.d.isEndOfDay == true)
+    {
+        $('.end-of-day').css({ "display": '' });
+        $('.end-of-day').text(data.d.EndOfDayMessage);
+    }
+    else
+        $('.end-of-day').css({ "display": 'none' });
+
+}
+
+function refreshF8Full(data) {
+    if (data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == true) {
+        $('.current-full').css({ "display": '' });
+        $('.current-full').text(data.d.currentFullMessage);
+    }
+    else
+        $('.current-full').css({ "display": 'none' });
+}
+
+function refreshF8Next(data) {
+    if (data.d.next.internal_id != 0)
+        $('.next-title').text("UP NEXT: " + data.d.next.name);
+    else
+        $('.next-title').text("UP NEXT: No more sessions at this time. Check SCHED for full agenda.");
+}
+
+function refreshF8Current(data) {
+    if (data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == false) {
+
+        $('.content').css({ "display": '' });
+
+        if (data.d.current.internal_id != 0) {
+            $('.current-start-time').text(data.d.current.event_start);
+            $('.current-end-time').text(data.d.current.event_end);
+            $('.current-time-separator').text('-');
+
+            $('.current-title').text(data.d.current.name);
+
+            var names = data.d.current.speakers.split(',');
+            var companies = data.d.current.speaker_companies.split(',');
+            var jobs = new Array(companies.length);
+            if (data.d.current.speaker_job_titles != null)
+                var jobs = data.d.current.speaker_job_titles.split(',');
             else
-                $('.next-title').text("UP NEXT: No more sessions at this time. Check SCHED for full agenda.");
+                jobs.fill("TBD");
+
+            var html = '';
+            if (names.length == companies.length && names.length == jobs.length) {
+                var index;
+                for (index = 0; index < names.length; index++) {
+                    html += "<div class='speaker'><div class='speaker-name'>" + names[index].toUpperCase() + "</div><div class='speaker-company'>" + jobs[index].toUpperCase() + ", " + companies[index].toUpperCase() + "</div></div>";
+                }
+            }
+
+            $('.speaker-list').html(html);
+
+
         }
-    });
+        else {
+            $('.current-start-time').text('');
+            $('.current-end-time').text('');
+            $('.current-time-separator').text('');
 
-}*/
+            $('.current-title').text('No official session at this time. Check SCHED for full agenda.');
 
+            $('.speaker-list').html('');
+
+        }
+
+    }
+    else
+        $('.content').css({ "display": 'none' });
+
+    
+    
+}
+//##################################################################################
 
 function setCurrentCss()
 {

@@ -71,14 +71,21 @@ namespace fnsignDisplay.overlays
 
                         var names = current.speakers.Split(',').ToList();
                         var companies = current.speaker_companies.Split(',').ToList();
-                        var speakers = names.Zip(companies, (n, c) => new { Name =  n , Company = c });
 
+                        var job_titles = Enumerable.Repeat("TBD", companies.Count).ToList();
+                        if (!string.IsNullOrEmpty(current.speaker_job_titles))
+                            job_titles = current.speaker_job_titles.Split(',').ToList();
+
+                        var speakers = names.Zip(companies, (n, c) => new { Name =  n , Company = c })
+                                            .Zip(job_titles, (speaker, j) => new { Name = speaker.Name, Company = speaker.Company, Job = j });
+                        
                         foreach (var speaker in speakers)
                         {
                             ph_speakers.Controls.Add(
                                 new LiteralControl(
-                                    string.Format("<div class=\"speaker\"><div class=\"speaker-name\">{0}</div><div class=\"speaker-company\">{1}</div></div>"
+                                    string.Format("<div class=\"speaker\"><div class=\"speaker-name\">{0}</div><div class=\"speaker-company\">{1}, {2}</div></div>"
                                     , speaker.Name.ToUpper()
+                                    , speaker.Job.ToUpper()
                                     , speaker.Company.ToUpper())));                            
                         }
 

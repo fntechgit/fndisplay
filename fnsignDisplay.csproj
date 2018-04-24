@@ -2280,6 +2280,26 @@
     <Content Include="assets\vendor\style-switcher\less\skin.less" />
     <Content Include="assets\vendor\style-switcher\less\variables.less" />
     <Content Include="images\Thumbs.db" />
+    <Content Include="overlays\fonts\graphik\Graphik-Black.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-BlackItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Bold.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-BoldItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Extralight.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-ExtralightItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Light.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-LightItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Medium.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-MediumItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Regular.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-RegularItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Semibold.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-SemiboldItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Super.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-SuperItalic.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-Thin.otf" />
+    <Content Include="overlays\fonts\graphik\Graphik-ThinItalic.otf" />
+    <Content Include="overlays\fonts\trim-mono\TrimMono-Medium.ttf" />
+    <Content Include="overlays\fonts\trim-mono\TrimMono-Regular.ttf" />
     <None Include="Properties\PublishProfiles\fndisplay.pubxml" />
   </ItemGroup>
   <PropertyGroup>
