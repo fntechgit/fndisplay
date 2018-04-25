@@ -11,27 +11,45 @@ function refreshF8EntryPoint() {
 
     $.ajax({
         type: "POST",
-        url: "/display.asmx/current_session_with_next",
+        url: "/display.asmx/get_f8_display_data",
         data: "{'location': '" + location_id + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data, status) {
 
-            //BeginningOfDay?
-            refreshBeginningOfDay(data)
-            //EndOfDay?
-            refreshEndOfDay(data)
-            //IsFull?
-            refreshF8Full(data);
-            //CURRENT
-            refreshF8Current(data);
-            //NEXT
-            refreshF8Next(data);
-                  
+            if (data.d.eventId == 0) {
+                var cookie_id = $.cookie("FNSIGN_EventID");
+
+                // if Session["event_id"] Is Null check for the cookie
+                $.ajax({
+                    type: "POST",
+                    url: "/display.asmx/loginAgain",
+                    data: "{'event_id': '" + cookie_id + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data, status) {
+                        refreshF8EntryPoint();
+                    }
+                });
+
+            } else {
+
+                //BeginningOfDay?
+                refreshBeginningOfDay(data)
+                //EndOfDay?
+                refreshEndOfDay(data)
+                //IsFull?
+                refreshF8Full(data);
+                //CURRENT
+                refreshF8Current(data);
+                //NEXT
+                refreshF8Next(data);
+            }
         }
     });
 
 }
+
 
 function refreshBeginningOfDay(data) {
     if (data.d.isBeginOfDay == true) {
@@ -39,7 +57,7 @@ function refreshBeginningOfDay(data) {
 
         var html = '';
         $.each(data.d.sessions, function(i) {
-            html += '<div class="bod-session"><div class="bod-line"></div><div class="bod-session-start">' + data.d.sessions[i].event_start.replace('AM', '').replace('PM', '').trim() + '</div><div class="bod-session-title">' + data.d.sessions[i].name + '</div></div>';
+            html += '<div class="bod-session"><div class="bod-line"></div><div class="bod-session-start">' + data.d.sessions[i].event_start.replace('AM', '').replace('PM', '').trim() + '</div><div class="circle"></div><div class="bod-session-title">' + data.d.sessions[i].name + '</div></div>';
         });
         $('.bod-content').html(html);
     }
@@ -89,17 +107,20 @@ function refreshF8Current(data) {
 
             var names = data.d.current.speakers.split(',');
             var companies = data.d.current.speaker_companies.split(',');
+            /*
             var jobs = new Array(companies.length);
             if (data.d.current.speaker_job_titles != null)
                 var jobs = data.d.current.speaker_job_titles.split(',');
             else
                 jobs.fill("TBD");
+            */
 
             var html = '';
-            if (names.length == companies.length && names.length == jobs.length) {
+            //if (names.length == companies.length && names.length == jobs.length) {
+            if (names.length == companies.length) {
                 var index;
                 for (index = 0; index < names.length; index++) {
-                    html += "<div class='speaker'><div class='speaker-name'>" + names[index].toUpperCase() + "</div><div class='speaker-company'>" + jobs[index].toUpperCase() + ", " + companies[index].toUpperCase() + "</div></div>";
+                    html += "<div class='speaker'><div class='speaker-name'>" + names[index].toUpperCase() + "</div><div class='speaker-company'>" + companies[index].toUpperCase() + "</div></div>";
                 }
             }
 
@@ -108,13 +129,13 @@ function refreshF8Current(data) {
 
         }
         else {
-            $('.current-start-time').text('');
-            $('.current-end-time').text('');
-            $('.current-time-separator').text('');
+            //$('.current-start-time').text('');
+            //$('.current-end-time').text('');
+            //$('.current-time-separator').text('');
 
-            $('.current-title').text('No official session at this time. Check SCHED for full agenda.');
+            //$('.current-title').text('No official session at this time. Check SCHED for full agenda.');
 
-            $('.speaker-list').html('');
+            //$('.speaker-list').html('');
 
         }
 

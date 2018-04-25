@@ -24,13 +24,13 @@ namespace fnsignDisplay.overlays
         public string start_time;
         public string end_time;
         public string next_session;
-        public string current_title = "Test Session Title";
-        public string current_start_time = "2:00pm";
-        public string current_end_time = "5:00pm";
+        public string current_title = "";
+        public string current_start_time = "";
+        public string current_end_time = "";
         public string current_time_separator = "-";
-        public string current_bgcolor = "#FFFFFF";
+        public string current_bgcolor = "";
         public string current_full_session_graphic = "";
-        public string next_title = "Next Test Session Title";
+        public string next_title = "";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -53,6 +53,7 @@ namespace fnsignDisplay.overlays
                     bgcolor = string.Format("#{0}", temp.bgcolor);
                     font_color = string.Format("#{0}", temp.overlay_font_color);
 
+                    /*
                     Session current = _sessions.current(ev.id, l.sched_id, _timewarp.display(t.event_id));
 
                     //TODO: In next method in sessions it's returning a value when no session is coming back. 
@@ -105,7 +106,7 @@ namespace fnsignDisplay.overlays
                     {
                         next_title = next.name;
                     }
-
+                    */
                 }
                 else
                 {

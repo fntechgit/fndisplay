@@ -44,8 +44,8 @@ namespace fnsignDisplay
         }
 
         //To avoid the gap between refreshing current and next.
-        [WebMethod(Description = "Get Next Session Only", EnableSession = true)]
-        public CurrentAndNext current_session_with_next(string location)
+        [WebMethod(Description = "Get F8 whole data to display", EnableSession = true)]
+        public CurrentAndNext get_f8_display_data(string location)
         {
             Int32 event_id = Convert.ToInt32(Context.Session["event_id"]);
             Event evt = _events.single(event_id);
@@ -59,12 +59,13 @@ namespace fnsignDisplay
 
             Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : _timewarp.display(event_id));
 
-            var result = new CurrentAndNext { current = current, next = next };
+            var result = new CurrentAndNext { eventId = event_id , current = current, next = next };
 
             if ((current.internal_id == 0) && (next.start > _timewarp.display(event_id))) //BEGINNING OF DAY
             {
-                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, _timewarp.display(event_id));
-                result.isBeginOfDay = true;
+                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, _timewarp.display(event_id).Date);
+
+                result.isBeginOfDay = (next.internal_id == result.sessions.First<Session>().internal_id);
             }
             else if ((current.end < _timewarp.display(event_id)) && (next.internal_id == 0)) //END OF DAY
             {
@@ -279,6 +280,7 @@ namespace fnsignDisplay
     }
 
     public class CurrentAndNext {
+        public Int32 eventId { get; set; }
         public Session current { get; set; }
         public Session next { get; set; }
         public bool currentIsFull { get; set; }
