@@ -53,6 +53,7 @@
 
         .current-full { font-size: 112px; font-family: "Graphik"; font-weight: bold; position:absolute; top:500px; left:580px; }
         .end-of-day { font-size: 112px; font-family: "Graphik"; font-weight: bold; position:absolute; top:450px; width:75%; text-align: center; left:230px;}
+        .pre-bod { font-size: 112px; font-family: "Trim Mono"; font-weight: bold; position:absolute; top:450px; width:75%; text-align: center; left:230px; color:#ffffff;}
 
         .bod-wrapper { }
         .bod-header { font-size: 112px; font-family: "Graphik"; font-weight: bold; color:#ffffff; float: left; height: 1080px; width: 520px; top:200px; left:200px;  position: absolute;}
@@ -80,7 +81,7 @@
         <asp:HiddenField runat="server" ID="location_sched" />
 
         <div class="wrapper">
-            
+            <div class="pre-bod" style="display:none ;"></div>
             <div class="current-full" style="display:none ;"></div>
             <div class="end-of-day" style="display:none ;"></div>
             <div class="bod-wrapper" style="display:none ;">

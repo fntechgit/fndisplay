@@ -44,30 +44,110 @@ namespace fnsignDisplay
         }
 
         //To avoid the gap between refreshing current and next.
+        [WebMethod(Description = "Get F8 Keynote whole data to display", EnableSession = true)]
+        public CurrentAndNext get_f8_keynote_display_data(string location)
+        {
+            Int32 event_id = Convert.ToInt32(Context.Session["event_id"]);
+            Event evt = _events.single(event_id);
+            CurrentAndNext result = new CurrentAndNext { eventId = event_id };
+
+            var currentTime = _timewarp.display(event_id);
+
+            //DAY 0
+            if (currentTime.Date == evt.event_start.Value.AddDays(-1).Date)
+            {
+                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, evt.event_start.Value.AddHours(11.5));
+                result.isBeginOfDay = true;
+            }
+            else if (currentTime.TimeOfDay <= new TimeSpan(11, 30, 0)) //DAY 1-2 BEFORE 11:30
+            {
+                result.isPreBeginOfDay = true;
+                result.PreBeginOfDayMessage = "10:00 - 11:30";
+            }
+            else if (currentTime.Date == evt.event_start.Value.Date) //DAY 1
+            {
+                Session current = _sessions.current(event_id, location, _timewarp.display(event_id));
+                if (current.internal_id != 0)
+                {
+                    current.event_start = current.start.ToString("h:mm");
+                    current.event_end = current.end.ToString("h:mm tt").ToLower();
+                }
+
+                Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : _timewarp.display(event_id));
+                next = next.start.Date != currentTime.Date ? new Session() : next;
+
+                if (currentTime.TimeOfDay > new TimeSpan(11, 30, 0) && currentTime.TimeOfDay < new TimeSpan(13, 0, 0)) //DAY 1 TODAY'S SESSIONS
+                {
+                    result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, evt.event_start.Value.AddHours(11.5));
+                    result.isBeginOfDay = true;
+                }
+                else if (currentTime.TimeOfDay >= new TimeSpan(13, 0, 0) 
+                    && (         (next.internal_id != 0 && next.end >= currentTime) 
+                              || (next.internal_id == 0 && current.end >= currentTime)
+                       )
+                        )//DAY 1 SESSIONS
+                {
+                    result.current = current;
+                    result.next = next;
+
+                } else if ((next.end < currentTime) && (next.internal_id == 0)) //DAY 1 END OF DAY
+                {
+                    result.isEndOfDay = true;
+                    result.EndOfDayMessage = evt != null ? evt.eod_title : "End of day!";
+                }
+
+            } else if (currentTime.Date == evt.event_start.Value.AddDays(1).Date) //DAY 2
+            {
+                if (currentTime.TimeOfDay > new TimeSpan(11, 30, 0) && currentTime.TimeOfDay < new TimeSpan(18, 0, 0)) //DAY 2 HAPPY HOUR
+                {
+                    result.isEndOfDay = true;
+                    result.EndOfDayMessage = "Join us for happy hour.";
+
+                }
+                else //DAY 2 END OF DAY
+                {
+                    result.isEndOfDay = true;
+                    result.EndOfDayMessage = evt != null ? evt.eod_title : "End of day!";
+                }
+                
+            }
+
+            return result;
+        }
+
+        //To avoid the gap between refreshing current and next.
         [WebMethod(Description = "Get F8 whole data to display", EnableSession = true)]
         public CurrentAndNext get_f8_display_data(string location)
         {
             Int32 event_id = Convert.ToInt32(Context.Session["event_id"]);
+            var currentTime = _timewarp.display(event_id);
             Event evt = _events.single(event_id);
 
-            Session current = _sessions.current(event_id, location, _timewarp.display(event_id));
+            Session current = _sessions.current(event_id, location, currentTime);
             if (current.internal_id != 0)
             {
                 current.event_start = current.start.ToString("h:mm");
                 current.event_end = current.end.ToString("h:mm tt").ToLower();
             }
 
-            Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : _timewarp.display(event_id));
+            Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : currentTime);
+            next = next.start.Date != currentTime.Date ? new Session() : next;
 
             var result = new CurrentAndNext { eventId = event_id , current = current, next = next };
 
-            if ((current.internal_id == 0) && (next.start > _timewarp.display(event_id))) //BEGINNING OF DAY
+            
+            if (currentTime.Date == evt.event_start.Value.AddDays(-1).Date) //DAY 0
             {
-                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, _timewarp.display(event_id).Date);
+                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, evt.event_start.Value);
+                result.isBeginOfDay = true;
+
+            } else if ((current.internal_id == 0) && (next.start > currentTime)) //DAY 1-2 TODAY'S SESSIONS
+            {
+                result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, currentTime.Date);
 
                 result.isBeginOfDay = (next.internal_id == result.sessions.First<Session>().internal_id);
             }
-            else if ((current.end < _timewarp.display(event_id)) && (next.internal_id == 0)) //END OF DAY
+            else if ((current.end < currentTime) && (next.internal_id == 0)) //DAY 1-2 END OF DAY
             {
                 result.isEndOfDay = true;
                 result.EndOfDayMessage = evt != null ? evt.eod_title : "End of day!";
@@ -288,6 +368,8 @@ namespace fnsignDisplay
         public bool isEndOfDay { get; set; }
         public string EndOfDayMessage { get; set; }
         public bool isBeginOfDay { get; set; }
+        public bool isPreBeginOfDay { get; set; }
+        public string PreBeginOfDayMessage { get; set; }
         public List<Session> sessions { get; set; }
     }
 }

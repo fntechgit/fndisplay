@@ -8,10 +8,13 @@ var wasFull = false;
 //##################################################################################
 function refreshF8EntryPoint() {
     location_id = $("#location_sched").val();
+    url = "/display.asmx/get_f8_display_data";
+    if (location_id.toLowerCase() == 'keynote')
+        url = "/display.asmx/get_f8_keynote_display_data";
 
     $.ajax({
         type: "POST",
-        url: "/display.asmx/get_f8_display_data",
+        url: url,
         data: "{'location': '" + location_id + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -33,7 +36,8 @@ function refreshF8EntryPoint() {
                 });
 
             } else {
-
+                //Pre-BeginningOfDay?
+                refreshPreBeginningOfDay(data)
                 //BeginningOfDay?
                 refreshBeginningOfDay(data)
                 //EndOfDay?
@@ -50,9 +54,18 @@ function refreshF8EntryPoint() {
 
 }
 
+function refreshPreBeginningOfDay(data) {
+    if (data.d.isPreBeginOfDay == true) {
+        $('.pre-bod').css({ "display": '' });
+        $('.pre-bod').text(data.d.PreBeginOfDayMessage);
+    }
+    else
+        $('.pre-bod').css({ "display": 'none' });
+
+}
 
 function refreshBeginningOfDay(data) {
-    if (data.d.isBeginOfDay == true) {
+    if (data.d.isPreBeginOfDay == false && data.d.isBeginOfDay == true) {
         $('.bod-wrapper').css({ "display": '' });
 
         var html = '';
@@ -67,7 +80,7 @@ function refreshBeginningOfDay(data) {
 }
 
 function refreshEndOfDay(data) {
-    if (data.d.isBeginOfDay == false && data.d.isEndOfDay == true)
+    if (data.d.isPreBeginOfDay == false && data.d.isBeginOfDay == false && data.d.isEndOfDay == true)
     {
         $('.end-of-day').css({ "display": '' });
         $('.end-of-day').text(data.d.EndOfDayMessage);
@@ -78,7 +91,7 @@ function refreshEndOfDay(data) {
 }
 
 function refreshF8Full(data) {
-    if (data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == true) {
+    if (data.d.isPreBeginOfDay == false && data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == true) {
         $('.current-full').css({ "display": '' });
         $('.current-full').text(data.d.currentFullMessage);
     }
@@ -87,14 +100,19 @@ function refreshF8Full(data) {
 }
 
 function refreshF8Next(data) {
-    if (data.d.next.internal_id != 0)
-        $('.next-title').text("UP NEXT: " + data.d.next.name);
-    else
-        $('.next-title').text("UP NEXT: No more sessions at this time. Check SCHED for full agenda.");
+    if (data.d.isPreBeginOfDay == false && data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == false) {
+
+        $('.content').css({ "display": '' });
+
+        if (data.d.next.internal_id != 0)
+            $('.next-title').text("UP NEXT: " + data.d.next.name);
+        else
+            $('.next-title').text("");
+    }
 }
 
 function refreshF8Current(data) {
-    if (data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == false) {
+    if (data.d.isPreBeginOfDay == false && data.d.isBeginOfDay == false && data.d.isEndOfDay == false && data.d.currentIsFull == false) {
 
         $('.content').css({ "display": '' });
 
