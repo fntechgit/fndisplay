@@ -30,6 +30,12 @@
         }
 
         @font-face {
+            font-family: Graphik Semibold;
+            font-weight: bold;
+            src: url("../overlays/fonts/graphik/Graphik-Semibold.otf") format('opentype');
+        }
+
+        @font-face {
             font-family: Trim Mono;
             src: url("../overlays/fonts/trim-mono/TrimMono-Regular.ttf") format('truetype');
         }
@@ -56,11 +62,11 @@
         .pre-bod { font-size: 112px; font-family: "Trim Mono"; font-weight: bold; position:absolute; top:450px; width:75%; text-align: center; left:230px; color:#ffffff;}
 
         .bod-wrapper { }
-        .bod-header { font-size: 112px; font-family: "Graphik"; font-weight: bold; color:#ffffff; float: left; height: 1080px; width: 520px; top:200px; left:200px;  position: absolute;}
-        .bod-content { font-size: 42px; position: absolute; width: 1100px; left: 750px; padding:40px;}
+        .bod-header { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; color:#ffffff; float: left; height: 1080px; width: 520px; top:200px; left:200px;  position: absolute;}
+        .bod-content { font-size: 46px; position: absolute; width: 1600px; left: 750px; padding:40px;}
         .bod-session {  }
-        .bod-session-title {letter-spacing: 1px; font-family: "Graphik"; width:750px; height:150px; float:left; padding-left:40px;}
-        .bod-session-start {font-family: "Trim Mono"; width:180px; float:left;text-align:right;padding-right:70px; height:150px;}
+        .bod-session-title {letter-spacing: 1px; font-family: "Graphik"; width:1250px; height:150px; float:left; padding-left:40px;}
+        .bod-session-start {font-family: "Trim Mono"; width:180px; float:left;text-align:right;padding-right:70px; height:100px;}
 
         .speaker-list {position: absolute; top: 680px; width: 1500px;}
         .speaker-name { float:left; padding-right: 20px;}
@@ -85,7 +91,7 @@
             <div class="current-full" style="display:none ;"></div>
             <div class="end-of-day" style="display:none ;"></div>
             <div class="bod-wrapper" style="display:none ;">
-                <div class="bod-header">Today's Sessions
+                <div class="bod-header">Today’s Sessions
                 </div>
                 <div class="bod-content">
                 </div>

@@ -143,7 +143,16 @@ function refreshF8Current(data) {
             }
 
             $('.speaker-list').html(html);
-
+            switch(names.length) {
+                case 6:
+                    $('.speaker').css({ "font-size": '25px', "line-height": '33px' });
+                    break;
+                case 5:
+                    $('.speaker').css({ "font-size": '30px', "line-height": '42px' });
+                    break;
+                default:
+                    $('.speaker').css({ "font-size": '33px', "line-height": '50px' });
+            }
 
         }
         else {
