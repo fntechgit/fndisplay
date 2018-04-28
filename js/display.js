@@ -70,7 +70,7 @@ function refreshBeginningOfDay(data) {
 
         var html = '';
         $.each(data.d.sessions, function(i) {
-            html += '<div class="bod-session"><div class="bod-line"></div><div class="bod-session-start">' + data.d.sessions[i].event_start.replace('AM', '').replace('PM', '').trim() + '</div><div class="circle"></div><div class="bod-session-title">' + data.d.sessions[i].name + '</div></div>';
+            html += '<div class="bod-session"><div class="bod-session-start">' + data.d.sessions[i].event_start.replace('AM', '').replace('PM', '').trim() + '</div><div class="circle"></div><div class="bod-session-title">' + data.d.sessions[i].name + '</div></div>';
         });
         $('.bod-content').html(html);
     }

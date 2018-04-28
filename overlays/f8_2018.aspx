@@ -52,8 +52,8 @@
 		}
 
 
-        .circle {  height: 25px; width: 25px;   border-radius: 50%;   border: 2px solid;   position: relative; background-color: <%= font_color %>; float:left;}
-        .circle:before {   content: "";   display: block;   position: absolute;   z-index: 1;   top: -100px;   left: 50%;   border: 1px dotted;   border-width: 0 0 0 1px;   width: 1px;   height: 120px; background-color: <%= font_color %>;}
+        .circle {  height: 25px; width: 25px;   border-radius: 50%;   border: 2px solid;   position: relative; background-color: <%= font_color %>; float:left; margin-top:8px;}
+        .circle:before {   content: "";   display: block;   position: absolute;   z-index: 1;   top: -500px;   left: 50%;   border: 1px dotted;   border-width: 0 0 0 1px;   width: 1px;   height: 1200px; background-color: <%= font_color %>;}
         
         .speaker-company, .current-time, .next-title, .current-full, .end-of-day, .bod-content { color: <%= font_color %> }
 
@@ -63,10 +63,10 @@
 
         .bod-wrapper { }
         .bod-header { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; color:#ffffff; float: left; height: 1080px; width: 520px; top:200px; left:200px;  position: absolute;}
-        .bod-content { font-size: 46px; position: absolute; width: 1600px; left: 750px; padding:40px;}
-        .bod-session {  }
+        .bod-content { font-size: 46px; position: absolute; width: 1600px; padding:40px;}
+        .bod-sessions { height: 1480px; position: absolute; left: 750px; width: 1800px; display:  grid; align-items:  center; }
         .bod-session-title {letter-spacing: 1px; font-family: "Graphik"; width:1250px; height:150px; float:left; padding-left:40px;}
-        .bod-session-start {font-family: "Trim Mono"; width:180px; float:left;text-align:right;padding-right:70px; height:100px;}
+        .bod-session-start {font-family: "Trim Mono"; width:180px; float:left;text-align:right;padding-right:40px; height:100px; margin-top:-3px;}
 
         .speaker-list {position: absolute; top: 680px; width: 1500px;}
         .speaker-name { float:left; padding-right: 20px;}
@@ -93,7 +93,9 @@
             <div class="bod-wrapper" style="display:none ;">
                 <div class="bod-header">Today’s Sessions
                 </div>
-                <div class="bod-content">
+                <div class="bod-sessions">
+                    <div class="bod-content">
+                    </div>
                 </div>
             </div>
 
