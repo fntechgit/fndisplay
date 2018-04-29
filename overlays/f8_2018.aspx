@@ -53,7 +53,7 @@
 
 
         .circle {  height: 25px; width: 25px;   border-radius: 50%;   border: 2px solid;   position: relative; background-color: <%= font_color %>; float:left; margin-top:8px;}
-        .circle:before {   content: "";   display: block;   position: absolute;   z-index: 1;   top: -500px;   left: 50%;   border: 1px dotted;   border-width: 0 0 0 1px;   width: 1px;   height: 1200px; background-color: <%= font_color %>;}
+        .circle:before {   content: "";   display: block;   position: absolute;   z-index: 1;   top: -500px;   left: 46%;   border: 1px dotted;   border-width: 1 1 1 1px;   width: 1px;   height: 1200px; background-color: <%= font_color %>;}
         
         .speaker-company, .current-time, .next-title, .current-full, .end-of-day, .bod-content { color: <%= font_color %> }
 
@@ -76,7 +76,7 @@
         .current-time {font-size: 50px; font-family: "Trim Mono"; height: 100px; margin-top: 90px;}
         .current-start-time { float:left; }
 
-        .current-title { font-size: 112px; font-family: "Graphik"; font-weight: bold; padding-bottom: 150px;}
+        .current-title { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; padding-bottom: 150px;}
 
         .next-title { font-size: 27px; letter-spacing: 1px; font-family: "Graphik"; font-weight: bold; position: absolute; top: 890px;}
     </style>
