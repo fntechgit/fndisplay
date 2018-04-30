@@ -66,20 +66,31 @@ namespace fnsignDisplay
             }
             else if (currentTime.Date == evt.event_start.Value.Date) //DAY 1
             {
-                Session current = _sessions.current(event_id, location, _timewarp.display(event_id));
+                Session current = _sessions.current(event_id, location, currentTime);
                 if (current.internal_id != 0)
                 {
                     current.event_start = current.start.ToString("h:mm");
                     current.event_end = current.end.ToString("h:mm tt").ToLower();
                 }
 
-                Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : _timewarp.display(event_id));
+                Session next = _sessions.next(event_id, location, current.internal_id != 0 ? current.end : currentTime);
                 next = next.start.Date != currentTime.Date ? new Session() : next;
 
                 if (currentTime.TimeOfDay > new TimeSpan(11, 30, 0) && currentTime.TimeOfDay < new TimeSpan(13, 0, 0)) //DAY 1 TODAY'S SESSIONS
                 {
                     result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, evt.event_start.Value.AddHours(11.5));
                     result.isBeginOfDay = true;
+                    
+                    //SHOW FIRST ONLY -> 30MIN BEFORE
+                    if (currentTime.TimeOfDay > new TimeSpan(12, 30, 0))
+                    {
+                        var sessions = result.sessions.Take(2).ToList<Session>();
+                        result.current = sessions[0];
+                        result.next = sessions[1];
+
+                        result.isBeginOfDay = false;
+                    }
+
                 }
                 else if (currentTime.TimeOfDay >= new TimeSpan(13, 0, 0) 
                     && (         (next.internal_id != 0 && next.end >= currentTime) 
@@ -89,6 +100,17 @@ namespace fnsignDisplay
                 {
                     result.current = current;
                     result.next = next;
+                    
+                    //AVOID GAP 
+                    if (current.internal_id == 0 && next.internal_id != 0)
+                    {
+                        result.current = next;
+                        result.current.event_start = result.current.start.ToString("h:mm");
+                        result.current.event_end = result.current.end.ToString("h:mm tt").ToLower();
+
+                        result.next = _sessions.next(event_id, location, result.current.end);
+                        result.next = result.next.start.Date != currentTime.Date ? new Session() : result.next;
+                    }
 
                 } else if ((next.end < currentTime) && (next.internal_id == 0)) //DAY 1 END OF DAY
                 {
@@ -146,6 +168,23 @@ namespace fnsignDisplay
                 result.sessions = _sessions.future_by_event_by_location_by_day(event_id, location, currentTime.Date);
 
                 result.isBeginOfDay = (next.internal_id == result.sessions.First<Session>().internal_id);
+
+                if (result.isBeginOfDay && (next.start.AddMinutes(-30).TimeOfDay < currentTime.TimeOfDay)) //SHOW FIRST -30MIN BEFORE
+                {
+                    var sessions = result.sessions.Take(2).ToList<Session>();
+                    result.current = sessions[0];
+                    result.next = sessions[1];
+
+                    result.isBeginOfDay = false;
+                } else if (!result.isBeginOfDay) //AVOID GAP 
+                {
+                    result.current = next;
+                    result.current.event_start = result.current.start.ToString("h:mm");
+                    result.current.event_end = result.current.end.ToString("h:mm tt").ToLower();
+
+                    result.next = _sessions.next(event_id, location, result.current.end);
+                    result.next = result.next.start.Date != currentTime.Date ? new Session() : result.next;
+                }
             }
             else if ((current.end < currentTime) && (next.internal_id == 0)) //DAY 1-2 END OF DAY
             {
@@ -158,7 +197,7 @@ namespace fnsignDisplay
                 //TODO Update the manager to set a full session message
                 result.currentFullMessage = "Session Full";
             }
-
+            
             return result;
         }
 
