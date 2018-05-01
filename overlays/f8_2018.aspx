@@ -58,7 +58,7 @@
         .speaker-company, .current-time, .next-title, .current-full, .end-of-day, .bod-content { color: <%= font_color %> }
 
         .current-full { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; position:absolute; top:500px; left:580px; }
-        .end-of-day { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; position:absolute; top:450px; width:65%; text-align: center; left:400px;}
+        .end-of-day { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; position:absolute; text-align: center; left:400px; top: 50%; transform: translateY(-50%); width: 58%; margin: 0 auto; padding-bottom: 10px;}
         .pre-bod { font-size: 112px; font-family: "Trim Mono"; font-weight: bold; position:absolute; top:450px; width:75%; text-align: center; left:230px; color:#ffffff;}
 
         .bod-wrapper { transform: scale(0.75); position:absolute; }
