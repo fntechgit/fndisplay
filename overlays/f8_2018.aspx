@@ -61,7 +61,7 @@
         .end-of-day { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; position:absolute; top:450px; width:65%; text-align: center; left:400px;}
         .pre-bod { font-size: 112px; font-family: "Trim Mono"; font-weight: bold; position:absolute; top:450px; width:75%; text-align: center; left:230px; color:#ffffff;}
 
-        .bod-wrapper { }
+        .bod-wrapper { transform: scale(0.75); position:absolute; }
         .bod-header { font-size: 112px; font-family: "Graphik Semibold"; font-weight: bold; color:#ffffff; float: left; height: 1080px; width: 520px; top:200px; left:200px;  position: absolute;}
         .bod-content { font-size: 46px; position: absolute; width: 1600px; padding:40px;}
         .bod-sessions { height: 1480px; position: absolute; left: 750px; width: 1800px; display:  grid; align-items:  center; }
